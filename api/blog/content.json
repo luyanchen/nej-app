@@ -1,0 +1,11 @@
+{
+  "result" : {
+      "id" : "001",
+      "title": "<h1>文章标题</h1>",
+      "content": "  <DIV style=\"TEXT-ALIGN: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 160%; BORDER-RIGHT-WIDTH: 0px; OVERFLOW-X: hidden; OVERFLOW-Y: hidden; BACKGROUND-COLOR: rgb(255,255,255); MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Helvetica, sans-serif; WORD-WRAP: break-word; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 100%; FONT-SIZE: 14px; BORDER-LEFT-WIDTH: 0px; CURSOR: text; PADDING-TOP: 0px; background-origin: initial; background-clip: initial;\"  >  <H1 style=\"LINE-HEIGHT: 44px;\"  ><SPAN style=\"LINE-HEIGHT: 44px; FONT-FAMILY: 微软雅黑, sans-serif;\"  >概述<SPAN style=\"LINE-HEIGHT: 44px;\"  lang=\"EN-US\" ></SPAN></SPAN></H1>  <P style=\"PADDING-BOTTOM: 0px; LINE-HEIGHT: 22px; MARGIN: 10px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;\"  ></P></DIV>",
+      "publishTime" : "1484782163000",
+      "userid" : "116146201062112931594" ,
+      "username" : "cathy"
+  },
+  "code" : "200"
+}

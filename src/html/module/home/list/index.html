@@ -1,0 +1,39 @@
+<meta charset="utf-8"/>
+<textarea name="txt" id="module-id-d5">
+<!--<div class=" gray-shallow" style="display:none;">-->
+<div class=" gray-shallow" >
+    <div class="admin-top j-flag">
+    </div>
+    <div class="div-5  gray-shallow"></div>
+    <div class="div-10  gray-shallow"></div>
+    <div  class="inputline row admin-list  black">
+      <a href="#/m/home/setting/">
+        <div class="col-sm-6 col-xs-6 p-left">
+          <img src="../../res/images/sz.png"/>&nbsp;&nbsp;
+          <label>设置</label>
+        </div>
+        <div class="col-sm-6 col-xs-6  p-right" >
+          <img class="small" src="../../res/images/go.png"/>
+        </div>
+      </a>
+    </div>
+    <div class="div-50"></div>
+</textarea>
+<textarea name="jst" id="jst-home-userinfo">
+      <div class="headimg">
+        <a href="./login.html?class=1">
+        {if data.headimg}
+          <img id="headimg" src=${data.headimg} />
+        {else}
+          <img id="headimg" src="../../res/images/headimg.png"} />
+        {/if}
+        </a>
+      </div>
+      <div class="name p-center" >
+          <p id="name">${data.nickname}</p>
+      </div>
+</textarea>
+<!-- @TEMPLATE -->
+<textarea name="css" data-src="./index.css"></textarea>
+<textarea name="js"  data-src="./index.js"></textarea>
+<!-- /@TEMPLATE -->

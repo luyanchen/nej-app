@@ -1,0 +1,45 @@
+<meta charset="utf-8"/>
+<textarea name="txt" id="module-id-d8">
+<session>
+            <div class="commemts-container">
+              <div class="session-title" id="comment-start">
+                  <span class="left"><img src="../../res/images/pl.png"/></span>
+                  <span class="right">评论</span>
+              </div>
+              <hr style="margin:0px 12px;"/>
+              <div class="info-list-container j-flag" id="comment-detail" style="margin-top:10px;">
+              评论区域
+              </div>
+             
+              <div id="send">
+                <div class="comment-send">
+                  <form>
+                    <input type="text" class="comment-input" name="content" placeholder="我也来说几句..." autocomplete="off"></input>
+                    <div class="comment-button" id="sendbutton">发送</div>
+                  </form>
+                </div>
+              </div>  
+            </div>
+</session>
+</textarea>
+<textarea name="jst" id="jst-detail-comment">
+   {list _list as x}
+    <div class="info-list-wrapper" style="min-height:50px;">
+      <img class="headimg" src=${x.headimg} />
+      <div class="righttext-comment" >
+        <div class="info-list-title" style="font-size:14px;">${x.nickname}</div>
+        <div class="time">${x.commentTime|format:'yyyy-MM-dd HH:mm'}</div>
+        <div class="comments-detail">${x.content}</div>
+      </div>
+    </div>
+    <hr style="margin-left: 50px;"/>
+    <div class="div-10"></div>
+    {/list}
+</textarea>
+
+
+
+<!-- @TEMPLATE -->
+<textarea name="css" data-src="./index.css"></textarea>
+<textarea name="js"  data-src="./index.js"></textarea>
+<!-- /@TEMPLATE -->

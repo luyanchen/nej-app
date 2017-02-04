@@ -1,0 +1,8 @@
+@charset "UTF-8";
+a,b,body,canvas,dd,div,dl,dt,em,form,h1,h2,h3,h4,h5,h6,html,img,input,label,li,ol,p,q,span,ul{margin:0;padding:0;border:0;outline:0}
+body,html{position:relative;height:100%;width:100%;padding:0;margin:0}
+body{-webkit-text-size-adjust:100%!important;font-size-adjust:none;margin:0 auto;font-family:'Microsoft YaHei',arial,sans-serif,'Droid Sans Fallback'}
+*{-webkit-tap-highlight-color:transparent}
+
+
+
