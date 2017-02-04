@@ -47,7 +47,7 @@ NEJ.define([
      * @return {Object}  参数
      */  
     _p._$getCode = function(_data){
-       /* _j._$request(
+        _j._$request(
             '../../api/login/code.json',{
                 type:'json',
                 method:'GET',
@@ -62,7 +62,7 @@ NEJ.define([
                 onerror:function(_error){
                     return null;
                 }
-        });*/
+        });
         return "121212";
     }
     /*
