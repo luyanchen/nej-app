@@ -1,7 +1,7 @@
 # nej-app
 
 概述
-nej-app是采用网易前端框架NEJ的mini blog，仅用于个人学习。
+nej-app是采用网易前端框架NEJ的mini blog，仅用于个人学习(持续更新中)。
 
 app涉及主要特性包括：
 
