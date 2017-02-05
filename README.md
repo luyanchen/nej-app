@@ -13,6 +13,7 @@ app涉及主要特性包括：
     
  app展示   
  需要启动静态服务器（当前数据为mock）
+ 首页地址：/nej-app/src/html/app.html
  
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/1.png" width = "30%" />
 
