@@ -151,11 +151,11 @@ NEJ.define([
      * @return {Object}  参数
      */  
     _p._$checkLogin = function(){
-        /*var token = _p._$getJsonDataInStorage("token");
+        var token = _p._$getJsonDataInStorage("token");
         if(!token){
             location.href="./login.html";
         } 
-        return;*/
+        return;
     }
     /*
      * 修改密码
