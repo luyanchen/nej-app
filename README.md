@@ -12,10 +12,13 @@ app涉及主要特性包括：
     常用模块:element,event,util,chain,chainable,ajax,jst,cache,tab,list等
     
  app展示   
+ 前端：https://github.com/luyanchen/nej-blog/
+ 后端：https://github.com/luyanchen/node-blog/
  
- 需要启动静态服务器（当前数据为mock）
+ 需要启动静态服务器
  首页地址：/nej-app/src/html/app.html
  登录地址：/nej-app/src/html/login.html
+ 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/1.png" width = "30%" />
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/2.png" width = "30%" />
