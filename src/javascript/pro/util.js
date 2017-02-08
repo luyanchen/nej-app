@@ -9,12 +9,11 @@
 NEJ.define([
     'base/util',
     'util/chain/chainable',
-    'util/ajax/xdr',    
+     'util/ajax/xdr',   
     'util/cache/storage'
 ],function(_u,$,_j,_c,_p){
     /*
      * url解析成json
-     * @return {Object}  参数
      */
     _p._$parseQueryString =  function(){
         var obj = {};
@@ -32,10 +31,10 @@ NEJ.define([
     };
     /*
      * 验证手机号
-     * @return {Object}  参数
      */  
-    _p._$checkPhone = function(_phone){
+    _p._$checkPhone = function(_options){
         var _reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+        var _phone = _options.phone;
         if(_reg.test(_phone)){               
             return true;
         }else{
@@ -43,112 +42,7 @@ NEJ.define([
         }
     }
     /*
-     * 获取验证码
-     * @return {Object}  参数
-     */  
-    _p._$getCode = function(_data){
-        _j._$request(
-            '../../api/login/code.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-            console.log(_result.data.code)
-
-                    return _result.data.code;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });
-        return "121212";
-    }
-    /*
-     * 验证验证码
-     * @return {Object}  参数
-     */  
-    _p._$verifyCode = function(_data){
-       /* _j._$request(
-            '../../api/login/verificode.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                     console.log(_result.data.success)
-
-                    return _result.data.success;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        return true;
-    }
-    /*
-     * 注册账号
-     * @return {Object}  参数
-     */  
-    _p._$submitRegister = function(_data){
-       /* _j._$request(
-            '../../api/login/register.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                     console.log(_result.data.success)
-
-                    return _result.data.success;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        return true;
-    }
-    /*
-     * 登录
-     * @return {Object}  参数
-     */  
-    _p._$Login = function(_data){
-        /*_j._$request(
-            '../../api/login/login.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                    return _result;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        //debug
-        var result = {
-          "data" : {
-            "success" : true,
-            "token" : "123456789",
-            "userid" : "1",
-            "nickname" : "cathy",
-            "phone" : "13123456789",
-            "headimg" : "../../res/images/jf.png",
-            "sex" : 0,
-            "errorinfo" : ""
-          },
-          "code" : "200"
-        }
-        return result;
-    }
-    /*
      * 验证登录
-     * @return {Object}  参数
      */  
     _p._$checkLogin = function(){
         var token = _p._$getJsonDataInStorage("token");
@@ -158,26 +52,53 @@ NEJ.define([
         return;
     }
     /*
-     * 修改密码
+     * ajax请求
+     */  
+    _p._$ajaxSend = function(_options){
+      var _data = _options.data,
+          _url = _options.url;
+          _callback = _options.callback;
+          _method = _options.method
+        _j._$request(
+            API_PATH+_url,{
+                type:'json',
+                method:_method,
+                data:_u._$object2query(_data),
+                onload:_callback._$bind(this),
+                onerror:this.__ajaxError._$bind(this),
+        });
+    }
+    /*
+     * ajax请求(列表请求，要求回调参数为数组)
+     */  
+    _p._$ajaxListSend = function(_options){
+      var _data = _options.data,
+          _url = _options.url;
+          _callback = _options.callback;
+          _method = _options.method
+
+        _j._$request(
+            API_PATH+_url,{
+                type:'json',
+                method:_method,
+                data:_u._$object2query(_data),
+                onload:function(_result){
+                  if(_result.code == 200){
+                      _callback(_result.data);
+                  }else{
+                    alert(_result.error);
+                  }
+                },
+                onerror:this.__ajaxError._$bind(this),
+        });
+    }
+    /*
+     * ajax 异常
      * @return {Object}  参数
      */  
-    _p._$editPwd = function(_data){
-       /*_j._$request(
-            '../../api/login/editpwd.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                    console.log(_result.data)
-                    return _result.data;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        return true;
+    _p.__ajaxError = function(_error){
+        console.log(_error);
+        alert("网络异常，请稍后重试")
     }
     /*
      * 本地存储JSON数据
@@ -211,48 +132,6 @@ NEJ.define([
     _p._$clearJsonDataInStorage = function(_key){  
         _c._$clearDataInStorage();
         return;
-    }
-    /*
-     * 发送评论
-     * @return {Object}  参数
-     */  
-    _p._$submitComment = function(_data){
-        /*_j._$request(
-            '../../api/blog/addcomment.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                    return _result.data;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        return true;
-    }
-    /*
-     * 发表博客
-     * @return {Object}  参数
-     */  
-    _p._$submitBlog = function(_data){
-        /*_j._$request(
-            '../../api/blog/addblog.json',{
-                type:'json',
-                method:'GET',
-                async:false,
-                data:_data,
-                timeout:1000,
-                onload:function(_result){
-                    return _result.data;
-                },
-                onerror:function(_error){
-                    return null;
-                }
-        });*/
-        return true;
     }
     
     return _p;  

@@ -20,8 +20,8 @@ NEJ.define([
      * @extends {_$$Module}
      * @param   {Object}  可选配置参数，已处理参数列表如下所示
      */
-    _p._$$ModuleLayoutHomeEditpsw = _k._$klass();
-    _pro = _p._$$ModuleLayoutHomeEditpsw._$extend(_m._$$Module);
+    _p._$$ModuleLayoutHomeEditpwd = _k._$klass();
+    _pro = _p._$$ModuleLayoutHomeEditpwd._$extend(_m._$$Module);
 
     /**
      * 构建模块
@@ -35,9 +35,9 @@ NEJ.define([
         // 0 - 登录模块所在容器
         var _list = _e._$getByClassName(this.__body,'j-flag');
         this.__export = {
-            editpsw:_list[0]
+            editpwd:_list[0]
         };
     };
     // notify dispatcher
-    _t1._$regist('layout-home-editpsw',_p._$$ModuleLayoutHomeEditpsw);
+    _t1._$regist('layout-home-editpwd',_p._$$ModuleLayoutHomeEditpwd);
 });

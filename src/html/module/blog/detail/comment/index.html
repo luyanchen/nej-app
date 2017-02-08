@@ -8,7 +8,6 @@
               </div>
               <hr style="margin:0px 12px;"/>
               <div class="info-list-container j-flag" id="comment-detail" style="margin-top:10px;">
-              评论区域
               </div>
              
               <div id="send">
@@ -28,10 +27,14 @@
       <img class="headimg" src=${x.headimg} />
       <div class="righttext-comment" >
         <div class="info-list-title" style="font-size:14px;">${x.nickname}</div>
-        <div class="time">${x.commentTime|format:'yyyy-MM-dd HH:mm'}</div>
+        <div class="time">${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
         <div class="comments-detail">${x.content}</div>
+        {if x.canDelete}
+          <span class="left yellow delcomment" data-id=${x._id} >删除</span>
+        {/if}
       </div>
     </div>
+
     <hr style="margin-left: 50px;"/>
     <div class="div-10"></div>
     {/list}

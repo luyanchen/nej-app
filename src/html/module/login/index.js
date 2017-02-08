@@ -39,41 +39,36 @@ NEJ.define([
     // notify dispatcher
     _t1._$regist('login',_p._$$ModuleLogin);
 
+    (function(){
+      /*提交登陆*/
+      $('body')._$on("click","#submit",function(){
+          var _phone = $('#phone')._$val();
+          var _pwd = $('#pwd')._$val();
+          if(!_u._$checkPhone({phone:_phone})){
+              $("#error-container")._$style("display","block");
+              $("#errormsg")._$text("请输入正确的手机号");
+              return;
+          }
+          if(_pwd == ''){
+              $("#error-container")._$style("display","block");
+              $("#errormsg")._$text("请输入密码");
+              return;
+          }
+          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',callback:LoginCallback});                         
+      }); 
+      $('input')._$on("focus",function(){
+        $("#error-container")._$style("display","none");
+      });
+    })();
 
-    /*提交注册*/
-    $("#submit")._$on("click",function(){
-        var _phone = $('#phone')._$val();
-        var _pwd = $('#pwd')._$val();
- 
-        if(!_u._$checkPhone(_phone)){
-            $("#error-container")._$style("display","block");
-            $("#errormsg")._$text("请输入正确的手机号");
-            return;
-        }
-        if(_pwd == ''){
-            $("#error-container")._$style("display","block");
-            $("#errormsg")._$text("请输入密码");
-            return;
-        }
-        var _result = _u._$Login({phone:_phone,pwd:_pwd});
-
+    var LoginCallback = function(_result){     
         if(_result.code == 200){
             var _data = _result.data;
-            if(_data.success){
             _u._$setJsonDataInStorage(_data); 
             location.href="./app.html";
-          }else{
-             $("#error-container")._$style("display","block");
-             $("#errormsg")._$text(_result.errorinfo);
-          }
         }else{
              $("#error-container")._$style("display","block");
-             $("#errormsg")._$text("系统繁忙中，请稍候重试");
+             $("#errormsg")._$text(_result.error);
         }
-
-     
-    }); 
-    $('input')._$on("focus",function(){
-      $("#error-container")._$style("display","none");
-    });
+    }
 });

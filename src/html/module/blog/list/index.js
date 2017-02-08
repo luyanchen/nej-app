@@ -11,11 +11,13 @@ NEJ.define([
     'util/chain/chainable',
     'util/template/tpl',
     'util/dispatcher/module',
-    'util/list/waterfall',
+    'util/template/jst',
     'pro/module/module',
-    '../../../../javascript/cache/blog.js',
-],function(_k,_e,$,_t1,_t2,_t3,_m,_d,_p,_o,_f,_r){
+    '../../../../javascript/pro/util.js',
+    '../../../../javascript/cache/list.js',
+],function(_k,_e,$,_t1,_t2,_t3,_m,_u,_c,_p,_o,_f,_r){
     var _pro;
+  
     /**
      * 首页列表模块对象
      * 
@@ -37,15 +39,10 @@ NEJ.define([
             _t1._$getTextTemplate('module-id-d4')
         );
         // 0 - list box
-        var _list = _e._$getByClassName(this.__body,'js-flag');
-        this.__mopt = {
-            limit:20,
-            parent:_list[0],
-            item:'jst-4-blog-list',
-            cache:{klass:_d._$$CacheBlog},
-            onbeforelistload:this.__onLoadingShow._$bind(this),
-            onemptylist:this.__onMessageShow._$bind(this,'没有博客列表')
-        };
+        _list = _e._$getByClassName(this.__body,'j-flag');
+        this._cacheArr = [];//缓存数组，每个tab只需实例化一次
+        this._flag = '';//列表标志
+        var cache = '';
     };
     /**
      * 刷新模块
@@ -53,18 +50,76 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__onRefresh = (function(){
-        var _doParseCKey = function(_param){
-
-            //缓存id，blog-列表类型-搜索值；推荐:blog-0-;关注blog-1-;我的blog-2-;搜索blog-3-搜索值
-            return 'blog-'+(_param.class||0)+'-';
+        
+        var _doParseCKey = function(_options){
+            //缓存id，blog-列表类型-搜索值；关注blog-1-;我的blog-2-;搜索blog-3-搜索值
+            var _href = _options.input.location.href;
+            return _href;
         };
-        return function(_options){
+        return function(_options){           
+            //console.log(_options);
             //刷新一次，实例化一个列表
             this.__super(_options);
-                        //console.log(_options)
-            if (this.__lmdl) this.__lmdl._$recycle();
-            this.__mopt.cache.lkey = _doParseCKey(_options.param||_o);
-            this.__lmdl = _t3._$$ListModuleWF._$allocate(this.__mopt);
+            var _key = _doParseCKey(_options);
+            if(this._cacheArr.indexOf(_key) == -1){
+                this._cacheArr.push(_key);
+                //实例化list
+                _cache = _c._$$CacheListCustom._$allocate({
+                    // id作为cache的标识
+                    key:_key,
+                    // 根据key，也就是上面的id，到缓存中取数据，然后处理数据
+                    onlistload:function(_ropt){
+                        var _data = _cache._$getListInCache(_ropt.key);//从cache列表中取数据
+                        _t3._$render(
+                            _list[0],
+                            'jst-blog-list',
+                            {_data:_data}
+                        );
+
+                    },
+                    // 根据key，也就是上面的id，到缓存中取数据，然后处理数据
+                    onitemload:function(_ropt){
+                        console.log(_ropt);
+                        var _item = _cache._$getItemInCache(_ropt.key);
+                        console.log(_item);
+
+                    },
+                    onitemadd:function(_ropt){
+                        var dataJson = JSON.parse(_ropt.data);//返回信息
+                        if(dataJson.code == 200){
+                            console.log(_ropt.action,"success!")
+                        }
+                    },
+                    onitemdelete:function(_ropt){
+                        console.log(_ropt)
+                        var dataJson = JSON.parse(_ropt.data);//返回信息为空？
+                        /*if(dataJson.code == 200){
+                            console.log(_ropt.action)
+                        }*/
+                    },
+                    onitemupdate:function(_ropt){
+                        var dataJson = JSON.parse(_ropt.data);//返回信息
+                        if(dataJson.code == 200){
+                            console.log(_ropt.action,"success!")                
+                        }
+                    },
+                    onpullrefresh:function(_ropt){
+                    //    console.log(_ropt);
+                        var _list = _cache._$getListInCache(_ropt.key);//从cache列表中取数据
+                        console.log(_list);
+                    }      
+                });
+            }
+            //发起请求
+            var _class = _options.param.class,
+                 _userid = '',
+                 _keyword = _options.param.keyword||'';
+            if(_class == 2){
+                //我的博客，需要传userid
+                _userid = _u._$getJsonDataInStorage("_id");
+            }
+            var _data = {userid:_userid,keyword:_keyword,limit:5,flag:this._flag,direction:''};
+            _cache._$getList({key:_key,data:_data});
         };
     })();
 

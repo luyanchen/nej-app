@@ -8,9 +8,9 @@
 NEJ.define([
     'base/klass',
     'base/util',
-    'util/ajax/xdr',
+    '../../javascript/pro/util.js',
     './cache.js'
-],function(_k,_u,_j,_t,_p,_o,_f,_r){
+],function(_k,_u0,_u1,_t,_p,_o,_f,_r){
     var _pro;
     /**
      * 标签缓存对象
@@ -26,45 +26,24 @@ NEJ.define([
     _pro.__doLoadList = function(_options){
         var _key = _options.key,
             _callback = _options.onload;
-        //根据key，判断博客类型及搜索值  blog-列表类型-搜索值；推荐:blog-0-;关注blog-1-;我的blog-2-;搜索blog-3-搜索值
+        //根据key，判断博客类型及搜索值  blog-列表类型-搜索值；推荐blog-1-;我的blog-2-;搜索blog-3-搜索值
         
-        var _class = _options.key.split("-")[1]||0,
-            _search = _options.key.split("-")[2]||'';
-        _options.data= _u._$merge(_options.data,{class:_class,search:_search});
-        //console.log(_options)
-        /*// for test
-        if (DEBUG){
-            var _list = window['tag-list'],
-                _limit = _options.limit,
-                _offset = _options.offset;
-            var _json = {
-                code:1,
-                result:{
-                    total:_list.length,
-                    list:_list.slice(_offset,_offset+_limit)
-                }
-            };
-            console.log(_json)
-            window.setTimeout(
-                this.__cbListLoad._$bind(
-                    this,_key,_callback,_json),1000
-            );
-            return;
-        }*/
-        // end for test
+        var _keyword = _options.key.split("-")[2]||'',
+             _userid = _u._$getJsonDataInStorage("_id"),
+             _flag = 
+
+        _options.data= _u0._$merge(_options.data,{userid:_userid,keyword:_keyword,flagid:_flagid});
         
-        _j._$request('../../api/blog/list.json',{
+        _u1._$ajaxSend({data:_options.data,url:'blog/list',callback:this.__cbListLoad._$bind(this,_key,_callback)});                        
+        
+        
+      /*  _j._$request('../../api/blog/list.json',{
             method:'get',
             type:'json',
             data:_u._$object2query(_options.data),
             onload:this.__cbListLoad._$bind(this,_key,_callback),
             onerror:this.__cbListLoad._$bind(this,_key,_callback,_o)
-        });
+        });*/
     };
-     //实现往服务器删除数据项
-     _pro.__doDeleteItem = function(_options){
-          console.log(_options);
-          
-     };
     return _p;
 });

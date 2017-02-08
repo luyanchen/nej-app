@@ -23,8 +23,8 @@ NEJ.define([
      * @extends {_$$Module}
      * @param   {Object}  可选配置参数，已处理参数列表如下所示
      */
-    _p._$$ModuleHomeEditpsw= _k._$klass();
-    _pro = _p._$$ModuleHomeEditpsw._$extend(_m._$$Module);
+    _p._$$ModuleHomeEditpwd= _k._$klass();
+    _pro = _p._$$ModuleHomeEditpwd._$extend(_m._$$Module);
     /**
      * 构建模块
      * @return {Void}
@@ -37,8 +37,9 @@ NEJ.define([
         );
     };
     // notify dispatcher
-    _t1._$regist('home-editpsw',_p._$$ModuleHomeEditpsw);
-
+    _t1._$regist('home-editpwd',_p._$$ModuleHomeEditpwd);
+    
+    (function(){
     //监听事件
     $("#submit")._$on("click",function(){
         var _oldpwd = $('#oldpwd')._$val();
@@ -55,20 +56,12 @@ NEJ.define([
         }
 
         var _data = {
-            phone : _u._$getJsonDataInStorage('phone'),
+            userid : _u._$getJsonDataInStorage('_id'),
             pwd : _pwd,
-            oldpwd : _oldpwd
+            oldpwd : _oldpwd,
+            token :_u._$getJsonDataInStorage('token'),
         }
-        var _result =  _u._$editPwd(_data);
-        if(_result){
-            //停留3S
-            $("#success-container")._$style("display","block");
-            $("#successmsg")._$text("修改成功"); 
-            window.setTimeout(function(){
-                location.href="./app.html#/m/home/list/";
-            },3000);
-        }
-
+        _u._$ajaxSend({data:_data,url:'login/editpwd',callback:editPwdCallback});                        
 
     });
     //提示词隐藏
@@ -76,4 +69,20 @@ NEJ.define([
       $("#error-container")._$style("display","none");
       $("#success-container")._$style("display","none");
     });
+    })();
+
+    var editPwdCallback = function(_result){  
+        if(_result.code == 200){ 
+            //停留3S
+            $("#error-container")._$style("display","none");
+            $("#success-container")._$style("display","block");
+            $("#successmsg")._$text("修改成功"); 
+            window.setTimeout(function(){
+                location.href="./login.html";
+            },3000);      
+        }else{
+            $("#error-container")._$style("display","block");
+            $("#errormsg")._$text(_result.error);
+        }
+    }
 });

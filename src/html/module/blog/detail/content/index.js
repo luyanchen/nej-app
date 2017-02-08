@@ -8,7 +8,7 @@
 NEJ.define([
     'base/klass',
     'base/element',
-    'base/util',
+    '../../../../../javascript/pro/util.js',
     'util/chain/chainable',
     'util/ajax/xdr',
     'util/template/tpl',
@@ -31,30 +31,13 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__doBuild = function(){
-        this.__super(); 
-        //获取id
+        console.log("dobuild")
+        this.__super();
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d7')
         );
-        var _list = _e._$getByClassName(this.__body,'j-flag');
-        var _id = location.href.split("?id=")[1];
-        var _data = { id:_id}        
-        _j._$request('../../api/blog/detail.json',{
-            method:'get',
-            type:'json',
-            data:_u._$object2query(_data),
-            onload:function(_result){
-                _t2._$render(
-                    _list[0],
-                    'jst-detail-content',
-                    {data:_result.result}
-                );
-                //console.log(_list[0])
-            },
-            onerror:function(){
-
-            }
-        }); 
+        _list = _e._$getByClassName(this.__body,'j-flag'); 
+        
     };
    /**
      * 刷新模块
@@ -63,33 +46,25 @@ NEJ.define([
      */
     _pro.__onRefresh = function(_options){
         this.__super(_options);
-        /*//获取id
-        var _id = _options.href.split("?id=")[1];
-        _options.data= _u._$merge(_options.data,{id:_id});
-        _j._$request('../../api/blog/detail.json',{
-            method:'get',
-            type:'json',
-            data:_u._$object2query(_options.data),
-            onload:function(_result){
-                this.__body = _e._$html2node(
-                    _t0._$getTextTemplate('module-id-d7')
-                );
-                var _list = _e._$getByClassName(this.__body,'j-flag');
+        console.log(_options);
+        var _blogid = _options.param.blogid;
+        var blogDetailCallback = function(_result){  
+            if(_result.code == 200){
                 _t2._$render(
                     _list[0],
                     'jst-detail-content',
-                    {data:_result.result}
+                    {data:_result.data}
                 );
-                //console.log(_list[0])
-                //手动append
-                //$('article')[0].appendChild(_list[0]);
-            },
-            onerror:function(){
-
+                console.log(_list[0])  
+            }else{
+                alert(_result.error);
             }
-        });*/
+        }  
+        _u._$ajaxSend({data:{blogid:_blogid},url:'blog/detail',callback:blogDetailCallback});                               
     };
 
     // notify dispatcher
     _t1._$regist('blog-detail-content',_p._$$ModuleBlogDetailContent);
+
+
 });

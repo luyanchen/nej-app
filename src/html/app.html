@@ -12,11 +12,11 @@
   <link rel="icon" type="image/png" href="">
   <link rel="stylesheet" href="../plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/module/app.css">
-  <script type="text/javascript" src='../plugins/iscroll.js'></script>
 
 </head>
 <body class="gray-shallow">
     <div id="module-box"></div>
+    <script>window.API_PATH = 'http://localhost:3000/';</script>
     <script src="../javascript/nej/src/define.js"></script>
     <script>
       NEJ.define([
@@ -34,7 +34,7 @@
                       '/m/publish/':'发博客',
                       '/m/home/list/':'个人中心',           
                       '/m/home/setting/':'设置',
-                      '/m/home/editpsw/':'修改密码',
+                      '/m/home/editpwd/':'修改密码',
                       '/m/search/':'搜索'
 
                   },
@@ -46,7 +46,7 @@
                       'layout-publish':'/m/publish/',
                       'layout-home-list':'/m/home/list/',
                       'layout-home-setting':'/m/home/setting/',
-                      'layout-home-editpsw':'/m/home/editpsw/',
+                      'layout-home-editpwd':'/m/home/editpwd/',
                       
                       'layout-search':'/m/search/',
 
@@ -63,7 +63,7 @@
                       'publish-addblog':'/?/publish/addblog/',
                       'home-list':'/?/home/list/',
                       'home-setting':'/?/home/setting/',
-                      'home-editpsw':'/?/home/editpsw/',
+                      'home-editpwd':'/?/home/editpwd/',
                       //搜索
                       'search-box':'/?/search/box/',
                       'search-list':'/?/search/list/'
@@ -88,7 +88,7 @@
                   //个人中心相关
                   '/?/home/list/':'module/home/list/index.html',
                   '/?/home/setting/':'module/home/setting/index.html',
-                  '/?/home/editpsw/':'module/home/editpsw/index.html',
+                  '/?/home/editpwd/':'module/home/editpwd/index.html',
 
                   //发表博客
                   '/?/publish/addblog/':'module/publish/addblog/index.html',
@@ -137,7 +137,7 @@
                       module:'module/layout/search/index.html',
                       composite:{
                           box:'/?/search/box/',
-                          list:'/?/search/list/'
+                          list:'/?/blog/list/'
                       }
                   },
                   //个人中心
@@ -155,10 +155,10 @@
                       }
                   },
                   //修改密码
-                  '/m/home/editpsw/':{
-                      module:'module/layout/home.editpsw/index.html',
+                  '/m/home/editpwd/':{
+                      module:'module/layout/home.editpwd/index.html',
                       composite:{
-                          editpsw:'/?/home/editpsw/'
+                          editpwd:'/?/home/editpwd/'
                       }
                   },
 

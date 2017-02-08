@@ -40,9 +40,7 @@ NEJ.define([
     $("#sendbutton")._$on("click",function(){
         var _text = $("#search")._$val();
         if(_text != ''){
-            location.href = location.href+'?search='+_text;
-            console.log(_text)
-              
+            location.href = location.href+'?keyword='+_text;  
         }
     });
 
