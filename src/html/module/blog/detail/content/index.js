@@ -31,23 +31,22 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__doBuild = function(){
-        console.log("dobuild")
         this.__super();
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d7')
-        );
-        _list = _e._$getByClassName(this.__body,'j-flag'); 
-        
+        );   
+
     };
    /**
      * 刷新模块
      * @param  {Object} 配置信息
      * @return {Void}
      */
-    _pro.__onRefresh = function(_options){
+    _pro.__onRefresh = (function(){
+        return function(_options){
         this.__super(_options);
-        console.log(_options);
         var _blogid = _options.param.blogid;
+        var _list = _e._$getByClassName(this.__body,'j-flag');
         var blogDetailCallback = function(_result){  
             if(_result.code == 200){
                 _t2._$render(
@@ -55,13 +54,13 @@ NEJ.define([
                     'jst-detail-content',
                     {data:_result.data}
                 );
-                console.log(_list[0])  
             }else{
                 alert(_result.error);
             }
-        }  
-        _u._$ajaxSend({data:{blogid:_blogid},url:'blog/detail',callback:blogDetailCallback});                               
-    };
+        } 
+        _u._$ajaxSend({data:{blogid:_blogid},url:'blog/detail',method:'get',callback:blogDetailCallback});                               
+        };
+    })();
 
     // notify dispatcher
     _t1._$regist('blog-detail-content',_p._$$ModuleBlogDetailContent);

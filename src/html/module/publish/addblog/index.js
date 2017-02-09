@@ -70,7 +70,7 @@ NEJ.define([
                 var _title = $("#title")._$val();
                 var _content = $("#content")._$val();
                 if(_content != '' && _title != ''){
-                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',callback:addBlogCallback});                             
+                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',method:'post',callback:addBlogCallback});                             
                 }
                         
         });
@@ -95,7 +95,7 @@ NEJ.define([
                 //$("#content")._$attr('value','');
                 //$("#title")._$attr('value','');
                 location.href="#/m/index/detail/?blogid="+_result.data.blogid;
-            },3000);      
+            },1000);      
         }else{
             $("#error-container")._$style("display","block");
             $("#errormsg")._$text(_result.error);

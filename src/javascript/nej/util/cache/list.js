@@ -1,9 +1,8 @@
 /*
  * ------------------------------------------
  * 列表缓存管理器实现文件
- * @version  1.1
+ * @version  1.0
  * @author   genify(caijf@corp.netease.com)
- *  * 新增上拉加载列表功能（line1063-1137），（add by chenluyan_bupt@163.com）
  * ------------------------------------------
  */
 /** @module  util/cache/list */
@@ -11,7 +10,7 @@ NEJ.define([
     'base/global',
     'base/klass',
     'base/util',
-    'util/cache/cache'
+    './cache.js'
 ],function(NEJ,_k,_u,_t,_p,_o,_f,_r){
     var _pro;
     /**
@@ -1057,85 +1056,7 @@ NEJ.define([
         return _event;
     };
 
-
-
-
-    /**
-     * 向后追加列表项至列表
-     * 
-     * @protected
-     * @method module:util/cache/list._$$CacheList#__doUnshiftToList
-     * @param  {String}       arg0 - 列表标识
-     * @param  {Object|Array} arg1 - 列表项或者列表
-     * @return {Void}
-     */
-    _pro.__doPushToList = function(_key,_item){
-        if (!_item) return;
-        // item push
-        if (!_u1._$isArray(_item)){
-            var _list = this._$getListInCache(_key),
-                _item = this.__doSaveItemToCache(_item,_key);
-            if (!!_item) _list.push(_item);
-            return;
-        }
-        // batch unshift
-        _u1._$forEach(
-            _item,function(_it){
-                this.__doPushToList(_key,_it);
-            },this
-        );
-    };
-     /**
-     * 上拉列表
-     * 
-     * @method   module:util/cache/list._$$CacheList#_$pullRefresh
-     * @param    {Object} arg0 - 可选配置参数
-     * @property {String} key  - 列表标识
-     * @property {Number} data - 发送到服务器数据信息
-     * @return   {Void}
-     */
-    _pro._$upPullRefresh = (function(){
-        var _doFormatKey = function(_options){
-            return 'r-'+_options.key;
-        };
-        return function(_options){
-            var _ropt = _u1._$merge({},_options),
-                _rkey = _doFormatKey(_ropt),
-                _callback = this._$dispatchEvent._$bind(this);
-            if (!this.__doQueueRequest(_rkey,_callback)){
-                _ropt.rkey = _rkey;
-                _ropt.onload = this.__upPullRefresh._$bind(this,_ropt);
-                this._$dispatchEvent('douppullrefresh',_ropt);
-
-            }
-        };
-    })();
-     /**
-     * 后向取列表回调
-     * 
-     * @protected
-     * @method module:util/cache/list._$$CacheList#__uppullRefresh
-     * @param  {Object} arg0 - 请求信息
-     * @param  {Array}  arg1 - 数据列表
-     * @return {Void}
-     */
-    _pro.__upPullRefresh = function(_options,_result){
-        // list with total
-        // {total:12,result:[]} 或者 {total:13,list:[]}
-        console.log(_result);
-        var _key = _options.key,
-            _total = parseInt(_result.total),
-            _list = _result.list||_result.result;
-        this.__doPushToList(_key,_list||_result);
-        if (!isNaN(_total)&&!!_list){
-            this._$getListInCache(_key).length = _total;
-            this._$setLoaded(_key);
-        }
-        this.__doCallbackRequest(
-            _options.rkey,'onuppullrefresh',_options
-        );
-    };
-       if (CMPT){
+    if (CMPT){
         NEJ.P('nej.ut')._$$ListCache = _p._$$CacheList;
     }
 

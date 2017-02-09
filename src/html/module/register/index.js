@@ -54,7 +54,7 @@ NEJ.define([
                     return;
                 }
                 //发送验证码
-                _u._$ajaxSend({data:{phone:_phone},url:'login/code',callback:getCodeCallback});                        
+                _u._$ajaxSend({data:{phone:_phone},url:'login/code',method:'get',callback:getCodeCallback});                        
             }
         },false); 
         /*下一步*/
@@ -78,7 +78,7 @@ NEJ.define([
                     return;
                 }
                 /*验证码认证*/
-                _u._$ajaxSend({data:{phone:_phone,code:_code},url:'login/verifyCode',callback:verifyCodeCallback});                        
+                _u._$ajaxSend({data:{phone:_phone,code:_code},url:'login/verifyCode',method:'post',callback:verifyCodeCallback});                        
 
             }
             if(_current == "second-page"){  
@@ -128,7 +128,7 @@ NEJ.define([
             var _pwd = $('#pwd')._$val();
             var _sex = $(".select-item .green")[0].innerText == '女'?0:1;
             var _nickname = $('#nickname')._$val();
-            _u._$ajaxSend({data:{phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname},url:'login/register',callback:submitRegisterCallback});                             
+            _u._$ajaxSend({data:{phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname},url:'login/register',method:'post',callback:submitRegisterCallback});                             
         }); 
         
     })();
@@ -175,7 +175,7 @@ NEJ.define([
             $("#successmsg")._$text("注册成功"); 
             window.setTimeout(function(){
                 location.href="./login.html";
-            },3000);      
+            },1000);      
         }else{
             $("#error-container")._$style("display","block");
             $("#errormsg")._$text(_result.error);

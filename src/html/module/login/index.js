@@ -54,7 +54,7 @@ NEJ.define([
               $("#errormsg")._$text("请输入密码");
               return;
           }
-          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',callback:LoginCallback});                         
+          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:LoginCallback});                         
       }); 
       $('input')._$on("focus",function(){
         $("#error-container")._$style("display","none");

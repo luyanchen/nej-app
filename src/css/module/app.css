@@ -129,7 +129,7 @@ label{font-weight:700;}
   .info-list-wrapper .right-list-zb{margin: -100px 0px 0px 90px;}
   .info-list-title{font-size: 16px;color: #333333;margin-bottom:5px;line-height: 16px;}
   .info-list-content{font-size: 13px;color: #999999;margin:5px 0px;}
-  .info-list-bottom{line-height:16px;}
+  .info-list-bottom{line-height:16px;margin:5px 0px;}
   .info-list-bottom .left{font-size: 13px;padding-right: 15px;}
   .info-list-bottom .icon{padding-right: 5px;}
   .info-list-bottom img{width:10px;height:10px;margin-top: -3px;}

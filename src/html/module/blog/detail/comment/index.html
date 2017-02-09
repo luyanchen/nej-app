@@ -30,7 +30,9 @@
         <div class="time">${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
         <div class="comments-detail">${x.content}</div>
         {if x.canDelete}
+        <div class="info-list-bottom">
           <span class="left yellow delcomment" data-id=${x._id} >删除</span>
+        </div>
         {/if}
       </div>
     </div>

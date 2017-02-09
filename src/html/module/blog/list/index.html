@@ -6,28 +6,42 @@
 </textarea>
 <textarea name="jst" id="jst-blog-list">
     <div class="main-container" >
-      <div class="info-list-container" >
-           {list _data as x}
-          <div class="info-list-wrapper">          
-              <img src="${x.headimg}" />
-              <div class="right-list" >
-                <a href="#/m/index/detail/?blogid=${x._id}">
-                <div class="info-list-title"><span class="titleline">${x.title}</span></div>
-                <div class="info-list-content"><span class="sourceline">${x.nickname}</span></div>
-                <div class="info-list-content">${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
-                </a>
-                <div class="info-list-bottom">
-                    <span class="left ">阅读(${x.accessCount})</span>
-                    <span class="left ">评论(${x.commentCount})</span>
-                    {if x.canDelete}
-                    <span class="left yellow delblog" data-id=${x._id}>删除</span>
-                    {/if}
-                </div>
-              </div>
-            <hr style="margin:15px 0px;"/>
+      <div id="topmsg"></div>
+      <div id="wrapper">
+        <div id="scroller">
+          <div id="pullDown">
+            <span class="pullDownIcon"></span><span id="pullDownLabel">下拉刷新...</span>
           </div>
-          {/list}
-      </div>
+          <div class="mbtn" id="more-down"> load more button </div>
+          <div class="info-list-container" >
+               {list data as x}
+              <div class="info-list-wrapper">          
+                  <img src="${x.headimg}" />
+                  <div class="right-list" >
+                    <a href="#/m/index/detail/?blogid=${x._id}">
+                    <div class="info-list-title"><span class="titleline">${x.title}</span></div>
+                    <div class="info-list-content"><span class="sourceline">${x.nickname}</span></div>
+                    <div class="info-list-content" data-id=${x.publishTime}>${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
+                    </a>
+                    <div class="info-list-bottom">
+                        <span class="left ">阅读(${x.accessCount})</span>
+                        <span class="left ">评论(${x.commentCount})</span>
+                        {if x.canDelete}
+                         <span class="left yellow delblog" data-id=${x._id}>删除</span>                
+                        {/if}
+                    </div>
+                  </div>
+                <hr style="margin:10px 0px;"/>
+              </div>
+              {/list}
+          </div>
+          <div id="pullUp">
+            <span class="pullUpIcon"></span><span id="pullUpLabel">上拉加载更多...</span>
+          </div>
+          <div id="bottommsg"></div>
+          </div>
+        </div>
+      <div class="mbtn" id="more-up"> load more button </div>  
     </div>
 </textarea>
 <!-- @TEMPLATE -->

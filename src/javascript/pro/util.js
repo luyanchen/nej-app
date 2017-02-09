@@ -58,7 +58,8 @@ NEJ.define([
       var _data = _options.data,
           _url = _options.url;
           _callback = _options.callback;
-          _method = _options.method
+          _method = _options.method;
+         // console.log(_data);
         _j._$request(
             API_PATH+_url,{
                 type:'json',

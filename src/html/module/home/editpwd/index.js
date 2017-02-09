@@ -61,7 +61,7 @@ NEJ.define([
             oldpwd : _oldpwd,
             token :_u._$getJsonDataInStorage('token'),
         }
-        _u._$ajaxSend({data:_data,url:'login/editpwd',callback:editPwdCallback});                        
+        _u._$ajaxSend({data:_data,url:'login/editpwd',method:'post',callback:editPwdCallback});                        
 
     });
     //提示词隐藏
