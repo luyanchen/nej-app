@@ -1,9 +1,9 @@
 # nej-app
  <ul>
- <li><a href="descript">概述</a></li>
- <li><a href="keyword">核心内容</a></li>
- <li><a href="show">app展示</a></li>
-#<a href="descript">概述</a>
+ <li><a href="#descript">概述</a></li>
+ <li><a href="#keyword">核心内容</a></li>
+ <li><a href="#show">app展示</a></li>
+#<div id="#descript">概述</div>
 nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-framework">NEJ</a>的mini blog app，通过模块调度系统实现单页面应用。本demo为前端代码，需结合<a href="https://github.com/luyanchen/node-blog/">api</a>使用。
 
 本demo仅用于个人学习(持续更新中)。
@@ -24,7 +24,7 @@ app涉及NEJ主要特性包括：
  首页地址：/nej-app/src/html/app.html
  登录地址：/nej-app/src/html/login.html
  
-#<a href="show">app展示</a>
+#<div id="show">app展示</div>
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/1.png" width = "30%" />
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/2.png" width = "30%" />
