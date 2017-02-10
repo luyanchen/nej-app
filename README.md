@@ -34,7 +34,7 @@ app涉及NEJ主要特性包括：
  <li><a href="#tab">重写tab</a></li>
  <li><a href="#bind">事件绑定</a></li>
  </ul>
-##<div id="module">模块系统</div>
+<h4><div id="module">模块系统</div></h4>
 目录
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/14.png" width = "30%" />
 两个入口文件：app.html和login.html,分别对应两个单页面。
@@ -50,7 +50,7 @@ app涉及NEJ主要特性包括：
    }
 }
 </code></pre>
-##<div id="util">自定义功能方法pro/util.js</div>
+<h4><div id="util">自定义功能方法pro/util.js</div></h4>
 javascript/pro/util.js文件用于存放自定义功能，其中_$ajaxSend用于请求api，返回格式为
 {
 code:请求代码,
@@ -59,14 +59,14 @@ error:错误信息
 }
 _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 
-##<div id="cache">列表缓存</div>
+<h4><div id="cache">列表缓存</div><h4>
 博客列表通过改写/nej/src/util/cache/下的list.js和absctract.js两个文件，实现列表缓存，并自定义列表缓存管理基类customlist.js,实现上拉刷新下拉加载时对应缓存项增删功能。代码对应javascript/cache/
 其中首页的“推荐”“我的“和搜索中的list模块是同一个，通过class参数分别实例化CacheListCustom控件。
-##<div id="refresh">上拉刷新下拉加载</div>
+<h4><div id="refresh">上拉刷新下拉加载</div></h4>
 自定义_initScroller方法判断上拉刷新和下拉加载，并触发缓存及列表加载
-##<div id="tab">重写tab</div>
+<h4><div id="tab">重写tab</div></h4>
 底部菜单和首页顶部菜单用tab组件,由于在底部菜单切换时需要修改图片，因此在/pro/tab.js中重写了TabView的_$match方法，新增onchange事件，当切换新菜单时，对应替换图片。
-##<div id="bind">事件绑定</div>
+<h4><div id="bind">事件绑定</div></h4>
 由于模块每次初始化化时触发_dobuild方法，后续每次切换到该模块时触发_onrefresh，因此时间绑定只能放到_dobuild中，并通过_$bind绑定作用域，若放到_onfresh中将出现多次绑定的情况。
 <pre><code>
     
