@@ -60,30 +60,30 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d6')
         );
+        this._bindEvent._$bind(this)();
 
     };
-    // notify dispatcher
-    _t1._$regist('publish-addblog',_p._$$ModulePublishAddblog);
-    //添加事件
-    (function(){
-        $("#sendbutton")._$on("click",function(_event){
+
+  //监听事件
+    _pro._bindEvent = function(){
+        $(this.__body)._$on("click","#sendbutton",(function(_event){
                 var _title = $("#title")._$val();
                 var _content = $("#content")._$val();
                 if(_content != '' && _title != ''){
-                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',method:'post',callback:addBlogCallback});                             
+                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',method:'post',callback:this._addBlogCallback._$bind(this)});                             
                 }
                         
-        });
-        $("#content,#title")._$on("keyup",function(){
+        })._$bind(this));
+        $(this.__body)._$on("keyup","#content,#title",function(){
             if($("#content")._$val() != "" && $("#title")._$val() != ""){
                 $("#sendbutton .signup")._$style("background","#67C2C6");      
             }else{
                 $("#sendbutton .signup")._$style("background","#cccccc");           
             }
         });
-    })();
+    };
     
-    var addBlogCallback = function(_result){ 
+    _pro._addBlogCallback = function(_result){ 
         //console.log(_result)
         if(_result.code == 200){  
             //停留3S
@@ -91,9 +91,7 @@ NEJ.define([
             $("#success-container")._$style("display","block");
             $("#successmsg")._$text("发布成功"); 
             window.setTimeout(function(){
-                //清除输入
-                //$("#content")._$attr('value','');
-                //$("#title")._$attr('value','');
+                $("#success-container")._$style("display","none");
                 location.href="#/m/index/detail/?blogid="+_result.data.blogid;
             },1000);      
         }else{
@@ -101,4 +99,7 @@ NEJ.define([
             $("#errormsg")._$text(_result.error);
         }
     }
+
+        // notify dispatcher
+    _t1._$regist('publish-addblog',_p._$$ModulePublishAddblog);
 });

@@ -5,14 +5,12 @@
   </div>
 </textarea>
 <textarea name="jst" id="jst-blog-list">
-    <div class="main-container" >
-      <div id="topmsg"></div>
-      <div id="wrapper">
-        <div id="scroller">
-          <div id="pullDown">
-            <span class="pullDownIcon"></span><span id="pullDownLabel">下拉刷新...</span>
+    <div class="main-container" style="background: #ffffff;">
+      <div id="wrapper" style="position:relative;">
+        <div id="pullDown" style="display:none;background: #ffffff;text-align: center;">
+            <span id="pullDownLabel">正在更新...</span>
           </div>
-          <div class="mbtn" id="more-down"> load more button </div>
+        <div id="scroller" style="position:relative;margin-top:0px;width:100%">
           <div class="info-list-container" >
                {list data as x}
               <div class="info-list-wrapper">          
@@ -35,13 +33,8 @@
               </div>
               {/list}
           </div>
-          <div id="pullUp">
-            <span class="pullUpIcon"></span><span id="pullUpLabel">上拉加载更多...</span>
-          </div>
-          <div id="bottommsg"></div>
-          </div>
         </div>
-      <div class="mbtn" id="more-up"> load more button </div>  
+        <div class="div-20 gray-shallow"></div>
     </div>
 </textarea>
 <!-- @TEMPLATE -->

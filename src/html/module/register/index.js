@@ -34,18 +34,17 @@ NEJ.define([
         this.__super();
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d1')
-        );
+        );  
+        this._timeFlag = false;//60s内发一次
+
+        this._bindEvent._$bind(this)();
     };
-    // notify dispatcher
-    _t1._$regist('register',_p._$$ModuleRegister);
 
 
-    //添加事件  
-    var _timeFlag = false;//60s内发一次
-    var _next;
-    (function(){
-        $('body')._$on('click','#verifycode',function(_event){
-            if(!_timeFlag){
+    //监听事件
+    _pro._bindEvent = function(){
+        $(this.__body)._$on('click','#verifycode',(function(_event){
+            if(!this._timeFlag){
                 /*检查手机号*/
                 var _phone= $('input[name="phone"]')._$val();
                 if(!_u._$checkPhone({phone:_phone})){
@@ -53,14 +52,12 @@ NEJ.define([
                     $("#errormsg")._$text("请输入正确的手机号");
                     return;
                 }
-                //发送验证码
-                _u._$ajaxSend({data:{phone:_phone},url:'login/code',method:'get',callback:getCodeCallback});                        
+                _sendCode({phone:_phone});
             }
-        },false); 
+        })._$bind(this),false); 
         /*下一步*/
-
-        $('body')._$on('click','.next',function(){
-            _next= $(this)._$attr("next");
+        $(this.__body)._$on('click','.next',function(){
+            var _next= $(this)._$attr("next");
             var _current = $(this)._$attr("current");
             //注册第一页
             if(_current == "first-page"){
@@ -77,9 +74,8 @@ NEJ.define([
                     $("#errormsg")._$text("请输入验证码");
                     return;
                 }
-                /*验证码认证*/
-                _u._$ajaxSend({data:{phone:_phone,code:_code},url:'login/verifyCode',method:'post',callback:verifyCodeCallback});                        
-
+                _verifyCode({phone:_phone,code:_code}) 
+                
             }
             if(_current == "second-page"){  
                 var _pwd = $('#pwd')._$val();
@@ -106,13 +102,12 @@ NEJ.define([
 
         });
         //提示词隐藏
-        $('input')._$on('focus',function(){
+        $(this.__body)._$on('click','input',function(){
           $("#error-container")._$style("display","none");
           $("#success-container")._$style("display","none");
         });
-
         /*选择身份*/
-        $('body')._$on('click','.select-item',function(_event){
+        $(this.__body)._$on('click','.select-item',function(_event){
             //选中节点
             if(_e._$getChildren($(this)[0],'green').length<1){
                 $(".select-item .green")._$addClassName("black");
@@ -122,19 +117,32 @@ NEJ.define([
             }
         });
         /*提交注册*/
-        $('body')._$on("click",'#submitregister',function(){
+        $(this.__body)._$on("click",'#submitregister',function(){
             var _phone = $('#phone')._$val();
             //var _code = $('#code')._$val();//已验证，不需要传
             var _pwd = $('#pwd')._$val();
             var _sex = $(".select-item .green")[0].innerText == '女'?0:1;
             var _nickname = $('#nickname')._$val();
-            _u._$ajaxSend({data:{phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname},url:'login/register',method:'post',callback:submitRegisterCallback});                             
-        }); 
+            _register({phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname});
+
+        });
+        var _sendCode = (function(_data){
+            //发送验证码
+            _u._$ajaxSend({data:_data,url:'login/code',method:'get',callback:this._getCodeCallback._$bind(this)});                        
+        })._$bind(this); 
+        var _verifyCode = (function(_data){
+            /*验证码认证*/
+            _u._$ajaxSend({data:_data,url:'login/verifyCode',method:'post',callback:this._verifyCodeCallback._$bind(this)});                        
+        })._$bind(this);
+        var _register = (function(_data){
+            /*注册*/
+            _u._$ajaxSend({data:_data,url:'login/register',method:'post',callback:this._submitRegisterCallback._$bind(this)});                       
+        })._$bind(this);
         
-    })();
+    };
 
     //api回调
-    var getCodeCallback = function(_result){
+    _pro._getCodeCallback = function(_result){
         /*获取验证码*/
         if(_result.code == 200){        
             $("#success-container")._$style("display","block");
@@ -142,9 +150,9 @@ NEJ.define([
             /*60s后才可点击*/
             $("#verifycode")._$delClassName("green");
             $("#verifycode")._$addClassName("text-gray");
-            _timeFlag = true; 
+            this._timeFlag = true; 
             window.setTimeout(function(){
-                _timeFlag = false; 
+                this._timeFlag = false; 
                 $("#verifycode")._$delClassName("text-gray");
                 $("#verifycode")._$addClassName("green");
             },60000);
@@ -153,20 +161,19 @@ NEJ.define([
             $("#errormsg")._$text(_result.error);                   
         }
     }
-    var verifyCodeCallback = function(_result){
+    _pro._verifyCodeCallback = function(_result){
         /*验证验证码*/
-        //console.log(_result)
         if(_result.code == 200){        
             $("#success-container")._$style("display","none");
             $("#error-container")._$style("display","none");
             $(".page")._$style("display","none");
-            $("#"+_next)._$style("display","block");
+            $("#second-page")._$style("display","block");
         }else{
             $("#error-container")._$style("display","block");
             $("#errormsg")._$text(_result.error);                
         }
     }
-    var submitRegisterCallback = function(_result){
+    _pro._submitRegisterCallback = function(_result){
         //提交注册    
         if(_result.code == 200){  
             //停留3S
@@ -181,5 +188,7 @@ NEJ.define([
             $("#errormsg")._$text(_result.error);
         }
     }
+    // notify dispatcher
+    _t1._$regist('register',_p._$$ModuleRegister);
 
 });

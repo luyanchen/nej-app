@@ -35,13 +35,13 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d0')
         );
+        this._bindEvent._$bind(this)();
     };
-    // notify dispatcher
-    _t1._$regist('login',_p._$$ModuleLogin);
 
-    (function(){
+
+    _pro._bindEvent = function(){
       /*提交登陆*/
-      $('body')._$on("click","#submit",function(){
+      $(this.__body)._$on("click","#submit",(function(){
           var _phone = $('#phone')._$val();
           var _pwd = $('#pwd')._$val();
           if(!_u._$checkPhone({phone:_phone})){
@@ -54,14 +54,14 @@ NEJ.define([
               $("#errormsg")._$text("请输入密码");
               return;
           }
-          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:LoginCallback});                         
-      }); 
+          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:this._loginCallback._$bind(this)});                         
+      })._$bind(this)); 
       $('input')._$on("focus",function(){
         $("#error-container")._$style("display","none");
       });
-    })();
+  };
 
-    var LoginCallback = function(_result){     
+  _pro._loginCallback = function(_result){     
         if(_result.code == 200){
             var _data = _result.data;
             _u._$setJsonDataInStorage(_data); 
@@ -70,5 +70,7 @@ NEJ.define([
              $("#error-container")._$style("display","block");
              $("#errormsg")._$text(_result.error);
         }
-    }
+  }
+        // notify dispatcher
+  _t1._$regist('login',_p._$$ModuleLogin);
 });

@@ -34,7 +34,6 @@ NEJ.define([
             _t1._$getTextTemplate('module-id-d2')
         );
         var _list = _e._$get('bottom-tb-box');
-       // console.log(_list)
         this.__tbview = _t0._$$TabViewCustom._$allocate({
             list:_e._$getChildren(_list),
             dataset:'id',
@@ -61,9 +60,8 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__doCheckMatchEQ = function(_event){
-        //console.log(_event)
         _event.matched = _event.target.indexOf(_event.source)==0;
-        //
+
     };
 
     /**

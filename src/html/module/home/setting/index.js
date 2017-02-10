@@ -34,16 +34,20 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d10')
         );
+        this._bindEvent._$bind(this)();
     };
-    // notify dispatcher
-    _t1._$regist('home-setting',_p._$$ModuleHomeSetting);
 
     //监听事件
-    $("#loginout")._$on("click",function(){
-        if(confirm("确定退出？")){
-          //清空缓存
-          _u._$clearJsonDataInStorage();
-          location.href="./login.html"; 
-        }                
-    });
+    _pro._bindEvent = function(){
+        $(this.__body)._$on("click","#loginout",function(){
+            if(confirm("确定退出？")){
+              //清空缓存
+              _u._$clearJsonDataInStorage();
+              location.href="./login.html"; 
+            }                
+        });
+    }
+        // notify dispatcher
+    _t1._$regist('home-setting',_p._$$ModuleHomeSetting);
+
 });

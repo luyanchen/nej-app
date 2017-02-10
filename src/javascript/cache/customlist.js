@@ -21,7 +21,7 @@ NEJ.define([
           var _data   = _options.data;
           var _onload = _options.onload;
           var _url = 'blog/list';
-          console.log(_data)
+          //console.log(_data)
           //搜索且关键字为空时，不需要请求，直接返回空数组
           if(_key == '/search/'){
                _onload([]);    //搜索keyword为空时render空
@@ -34,7 +34,7 @@ NEJ.define([
           var _key    = _options.key;
           var _data   = _options.data;
           var _onload = _options.onload;
-          console.log(_data)
+          //console.log(_data)
           var _url = 'blog/delete';
           _u._$ajaxListSend({data:_data,url:_url,method:'post',callback:_onload});
 
@@ -44,7 +44,7 @@ NEJ.define([
           var _key    = _options.key;
           var _data   = _options.data;
           var _onload = _options.onload;
-          console.log(_data)
+         // console.log(_data)
 
           var _url = 'blog/list';
           //搜索且关键字为空时，不需要请求，直接返回空数组
@@ -59,7 +59,7 @@ NEJ.define([
           var _key    = _options.key;
           var _data   = _options.data;
           var _onload = _options.onload;
-          console.log(_data)
+         // console.log(_data)
 
           var _url = 'blog/list';
           //搜索且关键字为空时，不需要请求，直接返回空数组

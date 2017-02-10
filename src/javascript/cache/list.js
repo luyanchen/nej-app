@@ -428,8 +428,6 @@ NEJ.define([
         if (!_u._$isArray(_item)){
             var _list = this._$getListInCache(_key),
                 _item = this.__doSaveItemToCache(_item,_key);
-                                console.log(_list)
-                console.log(_item)
             if (!!_item) _list.unshift(_item);
             return;
         }
@@ -597,14 +595,10 @@ NEJ.define([
             var _ropt = _u._$merge({},_options),
                 _rkey = _doFormatKey(_ropt),
                 _callback = this._$dispatchEvent._$bind(this);
-                                console.log(_rkey);
-                //console.log(this.__doQueueRequest(_rkey,_callback));
             if (!this.__doQueueRequest(_rkey,_callback)){
                 _ropt.rkey = _rkey;
                 _ropt.onload = this.__pullRefresh._$bind(this,_ropt);
-                console.log("d")
                 this._$dispatchEvent('dopullrefresh',_ropt);
-                console.log("e")
 
             }
         };
@@ -624,7 +618,6 @@ NEJ.define([
         var _key = _options.key,
             _total = parseInt(_result.total),
             _list = _result.list||_result.result;
-            console.log(_result)
         this.__doUnshiftToList(_key,_list||_result);
         if (!isNaN(_total)&&!!_list){
             this._$getListInCache(_key).length = _total;
@@ -1072,14 +1065,14 @@ NEJ.define([
     _pro.__doPushToList = function(_key,_item){
         if (!_item) return;
         // item push
-        if (!_u1._$isArray(_item)){
+        if (!_u._$isArray(_item)){
             var _list = this._$getListInCache(_key),
                 _item = this.__doSaveItemToCache(_item,_key);
             if (!!_item) _list.push(_item);
             return;
         }
         // batch unshift
-        _u1._$forEach(
+        _u._$forEach(
             _item,function(_it){
                 this.__doPushToList(_key,_it);
             },this
@@ -1099,7 +1092,7 @@ NEJ.define([
             return 'r-'+_options.key;
         };
         return function(_options){
-            var _ropt = _u1._$merge({},_options),
+            var _ropt = _u._$merge({},_options),
                 _rkey = _doFormatKey(_ropt),
                 _callback = this._$dispatchEvent._$bind(this);
             if (!this.__doQueueRequest(_rkey,_callback)){
@@ -1120,9 +1113,6 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__upPullRefresh = function(_options,_result){
-        // list with total
-        // {total:12,result:[]} 或者 {total:13,list:[]}
-        console.log(_result);
         var _key = _options.key,
             _total = parseInt(_result.total),
             _list = _result.list||_result.result;

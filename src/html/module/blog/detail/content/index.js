@@ -35,7 +35,7 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d7')
         );   
-
+        this._list = _e._$getByClassName(this.__body,'j-flag');
     };
    /**
      * 刷新模块
@@ -45,22 +45,24 @@ NEJ.define([
     _pro.__onRefresh = (function(){
         return function(_options){
         this.__super(_options);
-        var _blogid = _options.param.blogid;
-        var _list = _e._$getByClassName(this.__body,'j-flag');
-        var blogDetailCallback = function(_result){  
+        this._blogid = _options.param.blogid; 
+        _u._$ajaxSend({data:{blogid:this._blogid},url:'blog/detail',method:'get',callback:this._blogDetailCallback._$bind(this)});                               
+        };
+    })();
+    _pro._blogDetailCallback = function(_result){  
             if(_result.code == 200){
                 _t2._$render(
-                    _list[0],
+                    this._list[0],
                     'jst-detail-content',
                     {data:_result.data}
                 );
+            }else if(_result.code == 202){           
+                alert(_result.error);
+                history.go(-1);
             }else{
                 alert(_result.error);
             }
-        } 
-        _u._$ajaxSend({data:{blogid:_blogid},url:'blog/detail',method:'get',callback:blogDetailCallback});                               
-        };
-    })();
+    } 
 
     // notify dispatcher
     _t1._$regist('blog-detail-content',_p._$$ModuleBlogDetailContent);

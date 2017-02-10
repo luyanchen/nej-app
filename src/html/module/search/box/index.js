@@ -31,29 +31,35 @@ NEJ.define([
     _pro.__doBuild = function(){
         this.__super();
         this.__body = _e._$html2node(
-            _t0._$getTextTemplate('module-id-d10')
+            _t0._$getTextTemplate('module-id-d12')
         );
+        this._bindEvent._$bind(this)();
+
 
     };
-    // notify dispatcher
-    _t1._$regist('search-box',_p._$$ModuleSearchBox);
-    $("#sendbutton")._$on("click",function(){
-        var _text = $("#search")._$val();
-        if(_text != ''){
-            location.href = location.href.split('?')[0]+'?keyword='+_text;  
-        }
-    });
+    //监听事件
+    _pro._bindEvent = function(){
+        $(this.__body)._$on("click","#sendbutton",function(){
+            var _text = $("#search")._$val();
+            if(_text != ''){
+                $("#search")._$text('');
+                location.href = location.href.split('?')[0]+'?keyword='+_text+'?class=3';  
+            }
+        });
 
-    $("#search")._$on("keyup",function(){
-        if($(this)._$val() != ""){
-            $(".search-button")._$style("background","#67C2C6");      
-        }else{
-            $(".search-button")._$style("background","#cccccc");           
-        }
-    });
-    $("#search")._$on("keydown",function(_event){
-        if(_event && _event.keyCode==13){
-            _event.preventDefault();
-        }
-    });
+        $(this.__body)._$on("keyup","#search",function(){
+            if($(this)._$val() != ""){
+                $(".search-button")._$style("background","#67C2C6");      
+            }else{
+                $(".search-button")._$style("background","#cccccc");           
+            }
+        });
+        $(this.__body)._$on("keydown","#search",function(_event){
+            if(_event && _event.keyCode==13){
+                _event.preventDefault();
+            }
+        });
+    }
+        // notify dispatcher
+    _t1._$regist('search-box',_p._$$ModuleSearchBox);
 });
