@@ -59,7 +59,7 @@ error:错误信息
 }
 _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 
-<h4><div id="cache">列表缓存</div><h4>
+<h4><div id="cache">列表缓存</div></h4>
 博客列表通过改写/nej/src/util/cache/下的list.js和absctract.js两个文件，实现列表缓存，并自定义列表缓存管理基类customlist.js,实现上拉刷新下拉加载时对应缓存项增删功能。代码对应javascript/cache/
 
 其中首页的“推荐”“我的“和搜索中的list模块是同一个，通过class参数分别实例化CacheListCustom控件。
