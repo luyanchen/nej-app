@@ -9,7 +9,7 @@ nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-frame
 
 本demo仅用于个人学习(持续更新中)。
  <ul>
- <li>前端：<a href="https://github.com/luyanchen/nej-blog/">基于NEJ开发的HTML5移动单页应用</a></li>
+ <li>前端：<a href="https://github.com/luyanchen/nej-app/">基于NEJ开发的HTML5移动单页应用</a></li>
  <li>后端：<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a></li>
  </ul>
  
