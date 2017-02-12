@@ -1,4 +1,6 @@
-.mdl-2 .pgr{padding:20px 0;text-align:center;}
-.w-bit{line-height:24px;border-bottom:1px dotted #D8E0E5;overflow:hidden;}
-.w-bit .inf span{margin-right:20px;color:#7B7B7B;}
-.w-bit .xat a{margin-left:10px;}
+/*底部菜单*/
+.nav-bottom-container{text-align:center;bottom:0px;width:100%;position: fixed;height:50px;border-top:1px solid #E9E9E9;background: #ffffff;max-width: 800px;}
+.nav-bottom-container .top{float:top;padding-top:6px;padding-bottom: 3px;}
+.nav-bottom-container .top img{width:20px;height:20px;}
+.nav-bottom-container .bottom{font-size: 12px;color:#666666;padding-bottom: 5px;}
+.nav-bottom-container .green .bottom{color:#67C2C6;}

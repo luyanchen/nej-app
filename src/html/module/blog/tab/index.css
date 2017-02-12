@@ -1,0 +1,7 @@
+.navbutton-container{width:100%;background:#ffffff;height:44px;}
+.navbutton-wrapper{width:100%;}
+.navbutton-item{padding:4px 0px;font-size:14px;background-color:#ffffff;color:#67C2C6;text-align: center;margin:7px auto;display:inline;border:1px solid #67C2C6;}
+.navbutton-item.left{border-radius: 5px 0px 0px 5px; }
+.navbutton-item.center{border-radius: 0px 0px 0px 0px; }
+.navbutton-item.right{border-radius: 0px 5px 5px 0px; }
+.active .navbutton-item{background-color:#67C2C6;color:#ffffff;}

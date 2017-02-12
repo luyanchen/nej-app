@@ -5,17 +5,17 @@
   </div>
 </textarea>
 <textarea name="jst" id="jst-blog-list">
-    <div class="main-container" style="background: #ffffff;">
-      <div id="wrapper" style="position:relative;">
-        <div id="pullDown" style="display:none;background: #ffffff;text-align: center;">
+    <div class="main-container bg-white">
+      <div id="wrapper" >
+        <div id="pullDown">
             <span id="pullDownLabel">正在更新...</span>
-          </div>
-        <div id="scroller" style="position:relative;margin-top:0px;width:100%">
+        </div>
+        <div id="scroller">
           <div class="info-list-container" >
                {list data as x}
-              <div class="info-list-wrapper">          
-                  <img src="${x.headimg}" />
-                  <div class="right-list" >
+              <div class="info-list-wrapper row">          
+                  <img class="col-sm-2 col-xs-2" src="${x.headimg}" />
+                  <div class="col-sm-8 col-xs-8 center-list" >
                     <a href="#/m/index/detail/?blogid=${x._id}">
                     <div class="info-list-title"><span class="titleline">${x.title}</span></div>
                     <div class="info-list-content"><span class="sourceline">${x.nickname}</span></div>
@@ -24,13 +24,16 @@
                     <div class="info-list-bottom">
                         <span class="left ">阅读(${x.accessCount})</span>
                         <span class="left ">评论(${x.commentCount})</span>
-                        {if x.canDelete}
-                         <span class="left yellow delblog" data-id=${x._id}>删除</span>                
-                        {/if}
                     </div>
                   </div>
-                <hr style="margin:10px 0px;"/>
+                  <div class="col-sm-2 col-xs-2" >
+                        {if x.canDelete}
+                        <div class="left yellow delblog" data-id=${x._id}>删除</div>
+                         {/if}
+                  </div>
+
               </div>
+                              <hr style="margin:10px 0px;"/>
               {/list}
           </div>
         </div>

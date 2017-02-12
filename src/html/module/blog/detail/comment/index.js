@@ -71,7 +71,7 @@ NEJ.define([
         })._$bind(this));  
         $(this.__body)._$on("click",".delcomment",function(_event){
             if(confirm("确定删除？")){
-                console.log($(this));
+               // console.log($(this));
                 var _commentId = $(this)._$attr("data-id");
                 var _node = $(this)._$parent('.info-list-wrapper')
                 //移除节点，并删除事件
@@ -138,7 +138,7 @@ NEJ.define([
                 'jst-detail-comment',
                 {_list:this._commentData}
             ); 
-            console.log(this._commentData)
+           // console.log(this._commentData)
         }else{
             alert(result.error);
         }

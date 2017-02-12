@@ -81,7 +81,7 @@ NEJ.define([
             $("#successmsg")._$text("修改成功"); 
             window.setTimeout(function(){
                 location.href="./login.html";
-            },3000);      
+            },2000);      
         }else{
             $("#error-container")._$style("display","block");
             $("#errormsg")._$text(_result.error);

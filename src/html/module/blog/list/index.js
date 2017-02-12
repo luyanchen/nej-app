@@ -139,7 +139,7 @@ NEJ.define([
           touchStart = touch.pageY;
       }, false);
       wrapper._$on('touchmove', function(event) {
-          var touch = event.targetTouches[0];
+         var touch = event.targetTouches[0];
           offset = _e._$offset('scroller','wrapper').y;
           touchDis = touch.pageY-touchStart;
           if(offset<20 && touchStart<_u._$getWindowHeight() && touchDis>0){
@@ -147,8 +147,8 @@ NEJ.define([
             $("#pullDown")._$style("display","block");
           }
       }, false);
-      wrapper._$on('touchend', (function(event) {     
-          offset = _e._$offset('scroller','wrapper').y;
+      wrapper._$on('touchend', (function(event) {  
+        offset = _e._$offset('scroller','wrapper').y;
           //下拉
           if(touchStart<_u._$getWindowHeight() && touchDis>20){
             this._upRefresh();

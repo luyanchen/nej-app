@@ -56,7 +56,7 @@ NEJ.define([
           }
           _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:this._loginCallback._$bind(this)});                         
       })._$bind(this)); 
-      $('input')._$on("focus",function(){
+      $(this.__body)._$on('click','input',function(){
         $("#error-container")._$style("display","none");
       });
   };
