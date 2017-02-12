@@ -64,7 +64,7 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 
 其中首页的“推荐”“我的“和搜索中的list模块是同一个，通过class参数分别实例化CacheListCustom控件。
 <h4><div id="refresh">上拉刷新下拉加载</div></h4>
-自定义_initScroller方法判断上拉刷新和下拉加载，并触发缓存及列表加载
+自定义_initScroller方法判断上拉刷新和下拉加载，并触发缓存及列表加载（需要在移动端测试上拉刷新下拉加载效果）。
 <h4><div id="tab">重写tab</div></h4>
 底部菜单和首页顶部菜单用tab组件,由于在底部菜单切换时需要修改图片，因此在/pro/tab.js中重写了TabView的_$match方法，新增onchange事件，当切换新菜单时，对应替换图片。
 <h4><div id="bind">事件绑定</div></h4>
