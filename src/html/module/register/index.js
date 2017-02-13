@@ -43,8 +43,9 @@ NEJ.define([
 
     //监听事件
     _pro._bindEvent = function(){
-        $(this.__body)._$on('click','#verifycode',(function(_event){
-            if(!this._timeFlag){
+        var _self = this;
+        $(this.__body)._$on('click','#verifycode',function(_event){
+            if(!_self._timeFlag){
                 /*检查手机号*/
                 var _phone= $('input[name="phone"]')._$val();
                 if(!_u._$checkPhone({phone:_phone})){
@@ -52,9 +53,9 @@ NEJ.define([
                     $("#errormsg")._$text("请输入正确的手机号");
                     return;
                 }
-                _sendCode({phone:_phone});
+                _u._$ajaxSend({data:{phone:_phone},url:'login/code',method:'get',callback:_self._getCodeCallback._$bind(_self)});                        
             }
-        })._$bind(this),false); 
+        }); 
         /*下一步*/
         $(this.__body)._$on('click','.next',function(){
             var _next= $(this)._$attr("next");
@@ -74,7 +75,7 @@ NEJ.define([
                     $("#errormsg")._$text("请输入验证码");
                     return;
                 }
-                _verifyCode({phone:_phone,code:_code}) 
+                _u._$ajaxSend({data:{phone:_phone,code:_code},url:'login/verifyCode',method:'post',callback:_self._verifyCodeCallback._$bind(_self)});                               
                 
             }
             if(_current == "second-page"){  
@@ -123,22 +124,10 @@ NEJ.define([
             var _pwd = $('#pwd')._$val();
             var _sex = $(".select-item .green")[0].innerText == '女'?0:1;
             var _nickname = $('#nickname')._$val();
-            _register({phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname});
-
-        });
-        var _sendCode = (function(_data){
-            //发送验证码
-            _u._$ajaxSend({data:_data,url:'login/code',method:'get',callback:this._getCodeCallback._$bind(this)});                        
-        })._$bind(this); 
-        var _verifyCode = (function(_data){
-            /*验证码认证*/
-            _u._$ajaxSend({data:_data,url:'login/verifyCode',method:'post',callback:this._verifyCodeCallback._$bind(this)});                        
-        })._$bind(this);
-        var _register = (function(_data){
-            /*注册*/
-            _u._$ajaxSend({data:_data,url:'login/register',method:'post',callback:this._submitRegisterCallback._$bind(this)});                       
-        })._$bind(this);
+            _u._$ajaxSend({data:{phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname},url:'login/register',method:'post',callback:_self._submitRegisterCallback._$bind(_self)});                       
         
+        });
+       
     };
 
     //api回调

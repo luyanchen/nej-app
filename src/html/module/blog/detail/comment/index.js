@@ -8,6 +8,7 @@
 NEJ.define([
     'base/klass',
     'base/element',
+    'base/util',
     'util/chain/chainable',
     'util/ajax/xdr',
     'util/template/tpl',
@@ -15,7 +16,7 @@ NEJ.define([
     'util/template/jst',
     'pro/module/module',
     '../../../../../javascript/pro/util.js',
-],function(_k,_e,$,_j,_t0,_t1,_t2,_m,_u,_p,_o,_f,_r){
+],function(_k,_e,_u0,$,_j,_t0,_t1,_t2,_m,_u,_p,_o,_f,_r){
     // variable declaration
     var _pro;
     var _userid = _u._$getJsonDataInStorage("_id");
@@ -60,29 +61,32 @@ NEJ.define([
 
     _pro._bindEvent = function(){
         //添加事件
-        $(this.__body)._$on("click","#sendbutton",(function(_event){
+        var _self = this;
+        $(this.__body)._$on("click","#sendbutton",function(_event){
             var _content = $("input[name='content']")._$val();  
             if(_content != ''){
                 //清空消息
                 $("input[name='content']")._$text("");
-                _u._$ajaxSend({data:{blogid:this._blogid,nickname:_nickname,userid:_userid,headimg:_headimg,token:_token,content:_content},url:'blog/comment/add',method:'post',callback:this._addCommentCallback._$bind(this)}); 
+                _u._$ajaxSend({data:{blogid:_self._blogid,nickname:_nickname,userid:_userid,headimg:_headimg,token:_token,content:_content},url:'blog/comment/add',method:'post',callback:_self._addCommentCallback._$bind(_self)}); 
 
             }
-        })._$bind(this));  
+        });         
         $(this.__body)._$on("click",".delcomment",function(_event){
             if(confirm("确定删除？")){
-               // console.log($(this));
                 var _commentId = $(this)._$attr("data-id");
                 var _node = $(this)._$parent('.info-list-wrapper')
                 //移除节点，并删除事件
                 _e._$remove(_node[0],false);
-                _deleteItem(_commentId);
+                //删除节点缓存
+                _u0._$forEach(_self._commentData,function(_item,_index,_list){
+                    if(_item._id == _commentId){
+                        _list.splice(_index,1);
+                        return !0;
+                    }
+                });
+                _u._$ajaxSend({data:{blogid:_self._blogid,commentid:_commentId,userid:_userid,token:_token},url:'blog/comment/delete',method:'post',callback:_self._deleteCommentCallback._$bind(_self)});                 
             }
         });
-        var _deleteItem = (function(_commentId){
-            _u._$ajaxSend({data:{blogid:this._blogid,commentid:_commentId,userid:_userid,token:_token},url:'blog/comment/delete',method:'post',callback:this._deleteCommentCallback._$bind(this)});                 
-        })._$bind(this);
-
         $(this.__body)._$on("keyup","input[name='content']",function(){
             if($(this)._$val() != ""){
                 $(".comment-button")._$style("background","#67C2C6");      
@@ -148,6 +152,7 @@ NEJ.define([
         if(_result.code != 200){
             alert(result.error);
         }
+
 
     };
     // notify dispatcher

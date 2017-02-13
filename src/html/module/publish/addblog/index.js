@@ -66,14 +66,15 @@ NEJ.define([
 
   //监听事件
     _pro._bindEvent = function(){
-        $(this.__body)._$on("click","#sendbutton",(function(_event){
+        var _self = this;
+        $(this.__body)._$on("click","#sendbutton",function(_event){
                 var _title = $("#title")._$val();
                 var _content = $("#content")._$val();
                 if(_content != '' && _title != ''){
-                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',method:'post',callback:this._addBlogCallback._$bind(this)});                             
+                    _u._$ajaxSend({data:{userid:_userid,nickname:_nickname,token:_token,headimg:_headimg,content:_content,title:_title},url:'blog/add',method:'post',callback:_self._addBlogCallback._$bind(_self)});                             
                 }
                         
-        })._$bind(this));
+        });
         $(this.__body)._$on("keyup","#content,#title",function(){
             if($("#content")._$val() != "" && $("#title")._$val() != ""){
                 $("#sendbutton .signup")._$style("background","#67C2C6");      

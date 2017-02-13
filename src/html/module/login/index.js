@@ -41,7 +41,8 @@ NEJ.define([
 
     _pro._bindEvent = function(){
       /*提交登陆*/
-      $(this.__body)._$on("click","#submit",(function(){
+      var _self = this;
+      $(this.__body)._$on("click","#submit",function(){
           var _phone = $('#phone')._$val();
           var _pwd = $('#pwd')._$val();
           if(!_u._$checkPhone({phone:_phone})){
@@ -54,8 +55,8 @@ NEJ.define([
               $("#errormsg")._$text("请输入密码");
               return;
           }
-          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:this._loginCallback._$bind(this)});                         
-      })._$bind(this)); 
+          _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:_self._loginCallback._$bind(_self)});                         
+      }); 
       $(this.__body)._$on('click','input',function(){
         $("#error-container")._$style("display","none");
       });

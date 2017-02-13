@@ -43,7 +43,8 @@ NEJ.define([
 
     //监听事件
     _pro._bindEvent = function(){
-        $(this.__body)._$on("click","#submit",(function(){
+        var _self = this;
+        $(this.__body)._$on("click","#submit",function(){
             var _oldpwd = $('#oldpwd')._$val();
             var _pwd = $('#pwd')._$val();
             var _repwd = $('#repwd')._$val();
@@ -63,9 +64,9 @@ NEJ.define([
                 oldpwd : _oldpwd,
                 token :_token,
             }
-            _u._$ajaxSend({data:_data,url:'login/editpwd',method:'post',callback:this._editPwdCallback._$bind(this)});                        
+            _u._$ajaxSend({data:_data,url:'login/editpwd',method:'post',callback:_self._editPwdCallback._$bind(_self)});                        
 
-        })._$bind(this));
+        });
         //提示词隐藏
         $(this.__body)._$on("focus",'input',function(){
           $("#error-container")._$style("display","none");

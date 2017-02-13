@@ -78,6 +78,7 @@ NEJ.define([
             this._listcache._$getList({key:this._key,data:this._data,limit:10});
     };
     _pro._bindEvent = function(){
+        var _self = this;
         $(this.__body)._$on("click",".delblog",function(_event){
             if(confirm("确定删除？")){
                 var _node = $(this)._$parent('.info-list-wrapper')
@@ -85,20 +86,17 @@ NEJ.define([
                 //移除节点，并删除事件
                 _e._$remove(_node[0],false);
                 //删除缓存
-                _deleteItem(_blogid);
-            }
-        });
-        var _deleteItem = (function(_blogid){
-            this._listcache._$deleteItem({
-                    key:this._key,
+                _self._listcache._$deleteItem({
+                    key:_self._key,
                     id:_blogid ,
                     data:{
                         blogid:_blogid,
                         userid:_userid,
                         token:_token
                     }
-            });
-        })._$bind(this);
+              });
+            }
+        });
     }
     _pro._listLoadCallback= function(_ropt){
         var _data = this._listcache._$getListInCache(_ropt.key);//从cache列表中取数据
