@@ -30,6 +30,7 @@ app涉及NEJ主要特性包括：
  <li><a href="#module">模块组成</a></li>
  <li><a href="#util">自定义功能方法pro/util.js</a></li>
  <li><a href="#cache">列表缓存</a></li>
+ <li><a href="#login">登录验证</a></li>
  <li><a href="#refresh">上拉刷新下拉加载</a></li>
  <li><a href="#tab">重写tab</a></li>
  <li><a href="#bind">事件绑定</a></li>
@@ -61,8 +62,9 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 
 <h4><div id="cache">列表缓存</div></h4>
 博客列表通过改写/nej/src/util/cache/下的list.js和absctract.js两个文件，实现列表缓存，并自定义列表缓存管理基类customlist.js,实现上拉刷新下拉加载时对应缓存项增删功能。代码对应javascript/cache/
-
 其中首页的“推荐”“我的“和搜索中的list模块是同一个，通过class参数分别实例化CacheListCustom控件。
+<h4><div id="login">登录验证</div></h4>
+通过继承util/cache/storage，自定义本地存储JSON数据_$setJsonDataInStorage，将用户信息及token存放在localstorage。若未登录，跳转到登录页。
 <h4><div id="refresh">上拉刷新下拉加载</div></h4>
 自定义_initScroller方法判断上拉刷新和下拉加载，并触发缓存及列表加载（需要在移动端测试上拉刷新下拉加载效果）。
 <h4><div id="tab">重写tab</div></h4>
