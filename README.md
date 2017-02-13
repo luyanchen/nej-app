@@ -68,7 +68,7 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 <h4><div id="tab">重写tab</div></h4>
 底部菜单和首页顶部菜单用tab组件,由于在底部菜单切换时需要修改图片，因此在/pro/tab.js中重写了TabView的_$match方法，新增onchange事件，当切换新菜单时，对应替换图片。
 <h4><div id="bind">事件绑定</div></h4>
-由于模块每次初始化化时触发_dobuild方法，后续每次切换到该模块时触发_onrefresh，因此时间绑定只能放到_dobuild中，并通过_$bind绑定作用域，若放到_onfresh中将出现多次绑定的情况。
+由于模块每次初始化化时触发_dobuild方法，后续每次切换到该模块时触发_onrefresh，因此事件绑定只能放到_dobuild中，并通过_$bind绑定作用域，若放到_onfresh中将出现多次绑定的情况。
 <pre><code>
     
     /**
