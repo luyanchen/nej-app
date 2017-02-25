@@ -87,47 +87,19 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
         this._commentData = [];
     };
     _pro._bindEvent = function(){
-        //添加事件
-        $(this.__body)._$on("click","#sendbutton",(function(_event){
+        var _self = this;
+        $(this.__body)._$on("click","#sendbutton",function(_event){
             var _content = $("input[name='content']")._$val();  
             if(_content != ''){
                 //清空消息
                 $("input[name='content']")._$text("");
-                _u._$ajaxSend({data:{blogid:this._blogid,nickname:_nickname,userid:_userid,headimg:_headimg,token:_token,content:_content},url:'blog/comment/add',method:'post',callback:this._addCommentCallback._$bind(this)}); 
+                _u._$ajaxSend({data:{blogid:_self._blogid,nickname:_nickname,userid:_userid,headimg:_headimg,token:_token,content:_content},url:'blog/comment/add',method:'post',callback:_self._addCommentCallback._$bind(_self)}); 
 
-            }
-        })._$bind(this));
-   }
-</code></pre>在事件回调中可能会要调用该控件下的私有方法，若用this绑定作用域，可能会和event回调的this冲突。如
-<pre>
-<code>
-        //添加事件
-        $(this.__body)._$on("click","#sendbutton",(function(_event){
-            var _content = $("input[name='content']")._$val();  
-            if(_content != ''){
-                //清空消息
-                $("input[name='content']")._$text("");
-                _u._$ajaxSend({data:{blogid:this._blogid,nickname:_nickname,userid:_userid,headimg:_headimg,token:_token,content:_content},url:'blog/comment/add',method:'post',callback:this._addCommentCallback._$bind(this)}); 
-
-            }
-        })._$bind(this));  
-        $(this.__body)._$on("click",".delcomment",function(_event){
-            if(confirm("确定删除？")){
-                console.log($(this));
-                var _commentId = $(this)._$attr("data-id");
-                var _node = $(this)._$parent('.info-list-wrapper')
-                //移除节点，并删除事件
-                _e._$remove(_node[0],false);
-                _deleteItem(_commentId);
             }
         });
-        var _deleteItem = (function(_commentId){
-            _u._$ajaxSend({data:{blogid:this._blogid,commentid:_commentId,userid:_userid,token:_token},url:'blog/comment/delete',method:'post',callback:this._deleteCommentCallback._$bind(this)});                 
-        })._$bind(this);
-</code>
-</pre>
+   }
+</code></pre>在事件回调中可能会要调用该控件下的私有方法，若用this绑定作用域，可能会和event回调的this冲突。因此需要将用_self指向当前作用域，避免冲突。
 
-在上面第一个事件绑定回调中需要用到要调用该控件下的私有方法_addCommentCallback，因此将this绑定到事件回调函数中。第二个事件绑定也需要用到该控件下的私有方法_deleteCommentCallback，但因为要获得当前点击的节点$(this)，两个this会冲突，因此将_deleteCommentCallback单独放到外面用_deleteItem调用。
 #<div id="show">app展示</div>
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/1.png" width = "30%" />
 
