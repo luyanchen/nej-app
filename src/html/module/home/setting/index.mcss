@@ -1,0 +1,6 @@
+.m-setting-wrap{
+	.list{
+		margin:0px 12px;
+		img{width: 18px;vertical-align: middle;}
+	}
+}

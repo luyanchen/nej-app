@@ -33,7 +33,7 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d12')
         );
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
 
 
     };
@@ -49,9 +49,9 @@ NEJ.define([
 
         $(this.__body)._$on("keyup","#search",function(){
             if($(this)._$val() != ""){
-                $(".search-button")._$style("background","#67C2C6");      
+                $("#sendbutton")._$style("background","#67C2C6");      
             }else{
-                $(".search-button")._$style("background","#cccccc");           
+                $("#sendbutton")._$style("background","#cccccc");           
             }
         });
         $(this.__body)._$on("keydown","#search",function(_event){

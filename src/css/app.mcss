@@ -1,0 +1,160 @@
+/*reset&base*/
+body,div,p,ul,ol,li{margin:0;padding:0;}
+body{font-weight: bold ;}
+li {list-style: none;}
+a {color: inherit;margin: 0;outline: none;padding: 0;text-decoration: none}
+a:hover,a:visited,a:link{outline: none;}
+label{font-weight:700;}
+
+/*-------------------皮肤相关------------------------*/
+/*color*/
+$gray1 = #F9F9F9;
+$gray2 = #E9E9E9;
+$gray3 = #CCCCCC;
+$white = #FFFFFF;
+$green = #67C2C6;
+$red = #F55252;
+$orange = #FDA843;
+$black1 = #999999;
+$black2 = #333333;
+$yellow = #F6A60D;
+/*文字颜色*/
+.s-fc-g{color:$green;}
+.s-fc-r{color:$red;}
+.s-fc-o{color:$orange;}
+.s-fc-b{color:$black2;}
+.s-fc-y{color:$yellow;}
+.s-fc-gr1{color:$gray1;}
+.s-fc-gr2{color:$gray2;}
+.s-fc-gr3{color:$gray3;}
+
+/*背景颜色*/
+.s-bg-gr{background: $gray1;}
+.s-bg-w{background: $white;}
+
+/*-------------------布局相关------------------------*/
+.g-body{width:100%;max-width: 750px;@extend .s-bg-gr;}
+/*flex布局*/
+.g-flexbox{
+    display: -webkit-flex;  /* 新版本语法: Chrome 21+ */
+    display: flex;          /* 新版本语法: Opera 12.1, Firefox 22+ */
+    display: -webkit-box;   /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;      /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;   /* 混合版本语法: IE 10 */   
+ }
+.g-flex1 {            
+    -webkit-flex: 1;        /* Chrome */  
+    -ms-flex: 1;             /* IE 10 */  
+    flex: 1;                /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-flex: 1;     /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;       /* OLD - Firefox 19- */       
+}
+
+/*-------------------功能相关------------------------*/
+/*text-aign*/
+@for $pos of left,center,right {
+  .f-ta-#{$pos}{text-align: $pos};
+}
+/*float*/
+@for $pos of left,right {
+  .f-f-#{$pos}{float: $pos};
+}
+/*清除浮动*/
+$clearfix = {
+    *zoom: 1;
+    &:before, &:after {
+        display: table;
+        content: "";
+        line-height: 0; 
+    }
+    &:after {
+        clear: both; 
+    }
+}
+.f-clearboth{$clearfix();}
+/*圆角*/
+$border-radius = ($radius, $direction){
+    @if !$direction{
+        $join = '';
+    }@else{
+        $join = '-' + join($direction);
+    }
+    -webkit-border#{$join}-radius: $radius;
+       -moz-border#{$join}-radius: $radius;
+            border#{$join}-radius: $radius;
+}
+hr{
+    margin:5px 0px;
+    height:1px;
+    border:none;
+    border-top:1px solid $gray3 ;
+}
+/*-------------------元件相关------------------------*/
+/*button*/
+.u-btn-wrap{width:80%;margin: 0px 10%;}
+.u-btn{
+	text-align: center;
+	margin:0 0;
+    line-height:40px;
+	$border-radius: 4px 4px;
+	text-align:center;
+	font-size: 16px;
+	color: $white;
+	&.active{background: $green;}
+	&.default{background: $gray3;}
+    &.red{background:$red}
+}
+/*空白div*/
+$div-hlist = 50,40,30,20,10,5,4,3,2,1;
+.u-div-#{$div-hlist}{
+	height: $item+px;
+	width:100%; 
+	@extend .bg-Color
+}
+/*提示*/
+.u-tips{
+	.active{color:$green;text-align:center;};
+	.negative{color:$red;text-align:center;};
+}
+/*输入框*/
+.u-input{
+    border:1px solid #dddddd;
+    width: 100%;
+    line-height:40px;
+    font-size: 16px;
+    color: #999999;
+    background: $white;
+}
+/*链接*/
+.u-slink{font-size: 14px;text-align:center;}
+/*弹层*/
+.m-popup-wrap{
+    display:none;
+    .cover{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 20000;
+    }
+    .con-wrap{
+        z-index: 20001;
+        position:absolute;
+        top:50%;
+        transform:translate(0,-50%);
+        width:100%;
+        .con{
+            text-align: center;
+            text-align:center;
+            font-size: 20px;
+            color: $white;
+            height:50px;
+        }
+    } 
+}
+.u-btn-s-wrap{margin:0px 30px;}
+
+
+

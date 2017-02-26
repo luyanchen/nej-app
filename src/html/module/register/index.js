@@ -37,7 +37,7 @@ NEJ.define([
         );  
         this._timeFlag = false;//60s内发一次
 
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
     };
 
 
@@ -49,7 +49,7 @@ NEJ.define([
                 /*检查手机号*/
                 var _phone= $('input[name="phone"]')._$val();
                 if(!_u._$checkPhone({phone:_phone})){
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("请输入正确的手机号");
                     return;
                 }
@@ -66,12 +66,12 @@ NEJ.define([
                 var _phone= $('input[name="phone"]')._$val();
                 var _code = $('input[name="code"]')._$val();
                 if(!_u._$checkPhone({phone:_phone})){
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("请输入正确的手机号");
                     return;
                 }
                 if(!_code){
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("请输入验证码");
                     return;
                 }
@@ -83,19 +83,19 @@ NEJ.define([
                 var _repwd = $('#repwd')._$val();
                 var _nickname = $('#nickname')._$val();
                 if(_pwd == ""|| _repwd == ""){
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("密码不能为空");
                     return;
                 }else if(_pwd !== _repwd) {
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("两次密码不一致");
                     return;
                 }else if(_nickname == ''){
-                    $("#error-container")._$style("display","block");
+                    $("#error")._$style("display","block");
                     $("#errormsg")._$text("昵称不能为空");
                     return;
                 }else{
-                    $("#error-container")._$style("display","none");
+                    $("#error")._$style("display","none");
                 }
                 $(".page")._$style("display","none");
                 $("#"+_next)._$style("display","block");
@@ -104,17 +104,17 @@ NEJ.define([
         });
         //提示词隐藏
         $(this.__body)._$on('click','input',function(){
-          $("#error-container")._$style("display","none");
-          $("#success-container")._$style("display","none");
+          $("#error")._$style("display","none");
+          $("#success")._$style("display","none");
         });
         /*选择身份*/
         $(this.__body)._$on('click','.select-item',function(_event){
             //选中节点
-            if(_e._$getChildren($(this)[0],'green').length<1){
-                $(".select-item .green")._$addClassName("black");
-                $(".select-item .green")._$delClassName("green");
-                _e._$addClassName(_e._$getChildren($(this)[0],'p-left')[0],'green');
-                _e._$delClassName(_e._$getChildren($(this)[0],'p-left')[0],'black')            
+            if(_e._$getChildren($(this)[0],'s-fc-g').length<1){
+                $(".select-item .active")._$addClassName("default");
+                $(".select-item .active")._$delClassName("active");
+                _e._$delClassName(_e._$getChildren($(this)[0],'sex')[0],'default');           
+                _e._$addClassName(_e._$getChildren($(this)[0],'sex')[0],'active');           
             }
         });
         /*提交注册*/
@@ -122,7 +122,7 @@ NEJ.define([
             var _phone = $('#phone')._$val();
             //var _code = $('#code')._$val();//已验证，不需要传
             var _pwd = $('#pwd')._$val();
-            var _sex = $(".select-item .green")[0].innerText == '女'?0:1;
+            var _sex = $(".select-item .active")[0].innerText == '女'?0:1;
             var _nickname = $('#nickname')._$val();
             _u._$ajaxSend({data:{phone:_phone,pwd:_pwd,sex:_sex,nickname:_nickname},url:'login/register',method:'post',callback:_self._submitRegisterCallback._$bind(_self)});                       
         
@@ -134,31 +134,31 @@ NEJ.define([
     _pro._getCodeCallback = function(_result){
         /*获取验证码*/
         if(_result.code == 200){        
-            $("#success-container")._$style("display","block");
+            $("#success")._$style("display","block");
             $("#successmsg")._$text("验证码发送成功"+" debug:验证码："+_result.data.code);
             /*60s后才可点击*/
-            $("#verifycode")._$delClassName("green");
-            $("#verifycode")._$addClassName("text-gray");
+            $("#verifycode")._$delClassName("active");
+            $("#verifycode")._$addClassName("default");
             this._timeFlag = true; 
             window.setTimeout(function(){
                 this._timeFlag = false; 
-                $("#verifycode")._$delClassName("text-gray");
-                $("#verifycode")._$addClassName("green");
+                $("#verifycode")._$delClassName("default");
+                $("#verifycode")._$addClassName("active");
             },60000);
         }else{
-            $("#error-container")._$style("display","block");
+            $("#error")._$style("display","block");
             $("#errormsg")._$text(_result.error);                   
         }
     }
     _pro._verifyCodeCallback = function(_result){
         /*验证验证码*/
         if(_result.code == 200){        
-            $("#success-container")._$style("display","none");
-            $("#error-container")._$style("display","none");
+            $("#success")._$style("display","none");
+            $("#error")._$style("display","none");
             $(".page")._$style("display","none");
             $("#second-page")._$style("display","block");
         }else{
-            $("#error-container")._$style("display","block");
+            $("#error")._$style("display","block");
             $("#errormsg")._$text(_result.error);                
         }
     }
@@ -166,14 +166,14 @@ NEJ.define([
         //提交注册    
         if(_result.code == 200){  
             //停留3S
-            $("#error-container")._$style("display","none");
-            $("#success-container")._$style("display","block");
+            $("#error")._$style("display","none");
+            $("#success")._$style("display","block");
             $("#successmsg")._$text("注册成功"); 
             window.setTimeout(function(){
                 location.href="./login.html";
             },1000);      
         }else{
-            $("#error-container")._$style("display","block");
+            $("#error")._$style("display","block");
             $("#errormsg")._$text(_result.error);
         }
     }

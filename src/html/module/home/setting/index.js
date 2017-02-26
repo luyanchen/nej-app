@@ -34,17 +34,24 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d10')
         );
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
     };
 
     //监听事件
     _pro._bindEvent = function(){
+        var _self = this;
         $(this.__body)._$on("click","#loginout",function(){
-            if(confirm("确定退出？")){
+            var _yesCallback = function(){
               //清空缓存
               _u._$clearJsonDataInStorage();
-              location.href="./login.html"; 
-            }                
+              location.href="./login.html";
+            };
+            var _noCallback = function(){
+              $(".m-popup-wrap")._$style("display","none"); 
+            }
+            $(".m-popup-wrap")._$style("display","block");
+            $(".m-popup-wrap")._$on("click","#yes",_yesCallback._$bind(_self),false);
+            $(".m-popup-wrap")._$on("click","#no",_noCallback._$bind(_self),false);               
         });
     }
         // notify dispatcher

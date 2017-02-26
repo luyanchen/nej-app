@@ -1,44 +1,63 @@
 <meta charset="utf-8"/>
 <textarea name="txt" id="module-id-d8">
 <session>
-            <div class="commemts-container">
-              <div class="session-title" id="comment-start">
-                  <span class="left"><img src="../../res/images/pl.png"/></span>
-                  <span class="right">评论</span>
-              </div>
-              <hr style="margin:0px 12px;"/>
-              <div class="info-list-container j-flag" id="comment-detail" style="margin-top:10px;">
-              </div>
-             
-              <div id="send">
-                <div class="comment-send">
-                  <form>
-                    <input type="text" class="comment-input" name="content" placeholder="我也来说几句..." autocomplete="off"></input>
-                    <div class="comment-button" id="sendbutton">发送</div>
-                  </form>
-                </div>
-              </div>  
-            </div>
+  <div class="m-commemt-wrap">
+    <hr/>
+    <div class="title" id="comment-start">
+      <span><img src="../../res/images/pl.png"/></span>
+      <span class="text">评论</span>
+    </div>
+    <hr/>
+    <div class="m-list-wrap j-flag" id="comment-detail" >
+  </div>
+  <div class="u-div-40"></div>
+    <div id="send">
+      <div class="send">
+        <form>
+          <div class="g-flexbox">
+            <div class="g-flex1"><input type="text" class="input" name="content" placeholder="我也来说几句..." autocomplete="off"></input></div>
+            <div class="botton-wrap"><div class="button" id="sendbutton">发送</div></div>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+  <div class="m-popup-wrap">
+    <div class="cover"></div>
+    <div class="con-wrap">
+      <div class="con">
+        <div>确定删除？</div>
+      </div>
+      <div class="g-flexbox">
+        <div class="u-btn-s-wrap g-flex1">
+            <div class="u-btn default "  id="no">取消</div>
+        </div>
+        <div class="u-btn-s-wrap g-flex1">
+            <div class="u-btn active"  id="yes">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </session>
 </textarea>
 <textarea name="jst" id="jst-detail-comment">
    {list _list as x}
-    <div class="info-list-wrapper" style="min-height:50px;">
-      <img class="headimg" src=${x.headimg} />
-      <div class="righttext-comment" >
-        <div class="info-list-title" style="font-size:14px;">${x.nickname}</div>
-        <div class="time">${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
-        <div class="comments-detail">${x.content}</div>
-        {if x.canDelete}
-        <div class="info-list-bottom">
-          <span class="left yellow delcomment" data-id=${x._id} >删除</span>
+    <div class="list " >
+      <div class="g-flexbox">
+        <div class="headimg"><img  src="${x.headimg}" /></div>
+        <div class="g-flex1 center" >
+          <div class="name">${x.nickname}</div>
+          <div class="time">${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
+          <div class="content">${x.content}</div>
+          {if x.canDelete}
+          <div class="f-ta-left s-fc-y " >
+              <div class="delcomment" data-id=${x._id}>删除</div>
+          </div>
+          {/if}
         </div>
-        {/if}
       </div>
+      <hr/>
     </div>
-
-    <hr style="margin-left: 50px;"/>
-    <div class="div-10"></div>
     {/list}
 </textarea>
 

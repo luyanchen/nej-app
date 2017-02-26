@@ -1,0 +1,30 @@
+/*底部菜单*/
+$gray = #E9E9E9;
+$white = #FFFFFF;
+$black = #999999;
+$green = #67C2C6;
+.m-nav-wrap{
+	text-align:center;
+	bottom:0px;
+	width:100%;
+	position: fixed;
+	height:50px;
+	border-top:1px solid $gray;
+	background: $white;
+	max-width: 750px;
+	color:$black;
+	.top{
+		float:top;
+		padding-top:6px;
+		padding-bottom: 3px;
+	}
+	.top img{
+		width:20px;
+		height:20px;
+	}
+	.bottom{
+		font-size: 12px;
+		padding-bottom: 5px;
+	}
+	.active{color:$green;}
+}

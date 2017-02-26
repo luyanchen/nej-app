@@ -1,4 +1,27 @@
- .search-send{font-size:14px;width:100%;padding:10px 10px;bottom:0px;z-index:9;background:#F0F0F2;max-width: 800px;}
-.search-button{text-align:center;float:right;width:20%;padding:3px 5px;border-radius: 30px 30px;background:#CCCCCC; color: #ffffff;}
-
- .search-input{width:76%;padding:3px 5px;border-radius: 30px 30px;background:#ffffff; color: #666666;}
+.m-search-wrap .send{
+	font-size:16px;
+	width:100%;
+	padding:5px 10px;
+	bottom:0px;
+	z-index:9;
+	background:#f0f0f2;
+}
+.m-search-wrap input{
+	width:100%;
+	padding:1px 5px;
+	border-radius:30px 30px;
+	background:#fff;
+	font-size:16px;
+	color:#666;
+}
+.m-search-wrap .botton-wrap{
+	width:80px;
+	margin:0px 20px;
+}
+.m-search-wrap .botton-wrap .button{
+	text-align:center;
+	padding:3px 5px;
+	border-radius:30px 30px;
+	background:#ccc;
+	color:#fff;
+}

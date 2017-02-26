@@ -1,65 +1,59 @@
 <meta charset="utf-8"/>
 <textarea name="txt" id="module-id-d1">
   <form id="registerform" method="post">
-    <div class="main-container admin" >
-      <div class="div-20 gray-shallow"></div>
-      <div class="div-5 gray-shallow"></div>
-      <div class="gray-shallow page" id="first-page"  >
-        <input id="phone" class="inputline" type="text" name="phone" autocomplete="off" placeholder="请输入11位手机号码" />
-        <div class="div-10 gray-shallow"></div>
-        <input id="code" class="inputline" type="text" name="code" autocomplete="off" placeholder="请输入验证码" />
-        <div class="righttext green" id="verifycode"><span>获取验证码</span></div>
-        <div class="div-50 gray-shallow"></div>
-        <div class="div-10 gray-shallow"></div>
-        <div class="div-4 gray-shallow"></div>
-        <div class="sighup-big-container">
-          <div class="signup active big next" next="second-page" current="first-page">下一步</div>
-          <div class="div-10 gray-shallow"></div>
-          <div class="div-5 gray-shallow"></div>
-          <div class="smalllink green p-center">
-            <p><a href="#/m/login/">已有账号，直接登录</a></p>
+      <div class="u-div-20"></div>
+      <div class="page" id="first-page"  >
+        <input id="phone" class="u-input" type="text" name="phone" autocomplete="off" placeholder="请输入11位手机号码" />
+        <div class="u-div-10"></div>
+        <div class="g-flexbox">
+          <div class="g-flex1">
+          <input id="code" class=" u-input" type="text" name="code" autocomplete="off" placeholder="请输入验证码" /></div>
+          <div class="u-code f-ta-center">
+            <div class="active" id="verifycode">获取验证码</div>
           </div>
+        </div>
+        <div class="u-div-50"></div>
+        <div class="u-div-10"></div>
+        <div class="u-btn-wrap">
+          <div class="u-btn active next" next="second-page" current="first-page">下一步</div>
+        </div>
+        <div class="u-div-40"></div>
+        <div class="u-slink s-fc-g ">
+          <p><a href="#/m/login/">已有账号，直接登录</a></p>
         </div>
       </div>
-      <div class="gray-shallow page" id="second-page" style="display:none;">
-        <input id="pwd" class="inputline" type="password" name="pwd" autocomplete="off" placeholder="请输入密码" />
-        <div class="div-10 gray-shallow"></div>
-        <input id="repwd" class="inputline" type="password" name="repwd" autocomplete="off" placeholder="请输入重复密码" />
-        <div class="div-10 gray-shallow"></div>
-        <input id="nickname" class="inputline" type="text" name="nickname" autocomplete="off" placeholder="请输入昵称" />
-        <div class="div-50  gray-shallow"></div>
-        <div class=" gray-shallow">
-          <div class="sighup-big-container">
-            <div class="signup active big next" next="three-page" current="second-page">下一步</div>
-          </div>
+      <div class="page" id="second-page" >
+        <input id="pwd" class="u-input" type="password" name="pwd" autocomplete="off" placeholder="请输入密码" />
+        <div class="u-div-10"></div>
+        <input id="repwd" class="u-input" type="password" name="repwd" autocomplete="off" placeholder="请输入重复密码" />
+        <div class="u-div-10"></div>
+        <input id="nickname" class="u-input" type="text" name="nickname" autocomplete="off" placeholder="请输入昵称" />
+        <div class="u-div-50"></div>
+        <div class="u-btn-wrap">
+          <div class="u-btn active next" next="third-page" current="second-page">下一步</div>
         </div>
-        <div class="div-10 gray-shallow"></div>
       </div>    
-      <div class="gray-shallow page" id="three-page" style="display:none;margin-top:-10px;">
-        <div class="attention gray-shallow">请选择您性别</div>
-        <div  class="inputline row select-item">
-          <div class="col-sm-6 col-xs-6  green p-left" ><label>男</label></div>
+      <div class="page" id="third-page" >
+        <div class="u-label">请选择您性别</div>
+        <div  class="u-input select-item">
+          <div class="f-taleft sex active" ><label>男</label></div>
         </div>
-        <div  class="inputline-noline row select-item">
-          <div class="col-sm-6 col-xs-6  p-left" ><label>女</label></div>
+        <div  class="u-input select-item">
+          <div class="f-taleft sex default" ><label>女</label></div>
         </div>
-        <div class="div-50 gray-shallow"></div>
-        <div class=" gray-shallow">
-          <div class="sighup-big-container">
-            <div class="signup active big" id="submitregister">完成</div>
-          </div>
+        <div class="u-div-50 "></div>
+        <div class="u-btn-wrap">
+          <div class="u-btn active next" id="submitregister">完成</div>
+        </div>
         </div> 
-        <div class="div-20 gray-shallow"></div>    
+        <div class="u-div-20"></div>    
       </div>
-    </div>
-    <div class="gray-shallow" style="margin-top:-10px;">
-      <div class="row sighup-big-container " id="error-container" style="display:none">  
-        <div class="signup red big gray-shallow" id="errormsg" ></div>
+      <div class="u-div-20"></div>
+      <div class="u-tips" id="error" >  
+        <div class="negative" id="errormsg" ></div>
       </div>
-    </div>
-    <div class="gray-shallow" style="margin-top:-10px;">
-      <div class="row sighup-big-container " id="success-container" style="display:none">  
-        <div class="signup green big gray-shallow" id="successmsg" ></div>
+      <div class="u-tips" id="success">  
+        <div class="active" id="successmsg" ></div>
       </div>
     </div>
 

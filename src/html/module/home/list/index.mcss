@@ -1,0 +1,18 @@
+.m-admin-wrap{
+	.top{
+	    background: url(../../../../../res/images/admin-bg.png );
+	    background-position: left top;
+	    background-repeat: repeat-x;
+	    background-size: 100% auto;
+		.headimg{
+			padding: 37px 0px 10px 0px;
+			text-align: center;
+			img{width:80px;height:80px;border-radius: 40px 40px;}
+		};
+		.name{font-size: 16px;color: #ffffff;padding-bottom: 30px;}
+	}
+	.list{
+		margin:0px 12px;
+		img{width: 18px;vertical-align: middle;}
+	}
+}

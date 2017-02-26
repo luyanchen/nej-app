@@ -2,30 +2,27 @@
 <textarea name="txt" id="module-id-d7">
 <session>
   <article>
-      <div class="j-flag ">
-        
+      <div class="j-flag ">      
       </div>
   </article>
 </session>
 </textarea>
 <textarea name="jst" id="jst-detail-content">
-        <div class="article-container">
-          <div class="article-top">
+        <div class="m-article-wrap">
+          <div class="top">
             <div class="title" id="wx-title">${data.title}</div>
             <div class="source-time">
               <div id="wx-source">${data.nickname}</div>
               <div id="wx-date">${data.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
             </div>
           </div>
-          <hr style="margin-bottom:5px;"/>
-          <div class="article-content" >
+          <div class="content" >
             <div id="wx-content">${data.content}</div>
             <div class="readnum">
               <span>阅读(${data.accessCount})</span>
               <span>评论(${data.commentCount})</span>         
             </div>
           </div>
-          <hr style="margin-bottom:5px;"/>
         </div>
         </textarea>
 <!-- @TEMPLATE -->

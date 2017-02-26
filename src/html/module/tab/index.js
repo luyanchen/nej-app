@@ -9,11 +9,15 @@ NEJ.define([
     'base/klass',
     'base/element',
     'base/util',
+    '../../../javascript/pro/util.js',
+    'util/chain/chainable',
     '../../../javascript/pro/tab.js',
     'util/template/tpl',
     'util/dispatcher/module',
     'pro/module/module'
-],function(_k,_e,_u,_t0,_t1,_t2,_m,_p,_o,_f,_r){
+],function(_k,_e,_u,_u1,$,_t0,_t1,_t2,_m,_p,_o,_f,_r){
+    //验证登录状态
+    _u1._$checkLogin();
     // variable declaration
     var _pro;
     /**
@@ -33,11 +37,12 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t1._$getTextTemplate('module-id-d2')
         );
-        var _list = _e._$get('bottom-tb-box');
+
+        var _list = _e._$getByClassName('bottom-tb-box','tab');
         this.__tbview = _t0._$$TabViewCustom._$allocate({
-            list:_e._$getChildren(_list),
+            list:_list,
             dataset:'id',
-            selected:'green',
+            selected:'active',
             oncheck:this.__doCheckMatchEQ._$bind(this),
             onchange:this.__doAction._$bind(this)
         });

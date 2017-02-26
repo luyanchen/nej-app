@@ -38,7 +38,7 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d11')
         );
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
     };
 
     //监听事件
@@ -49,11 +49,11 @@ NEJ.define([
             var _pwd = $('#pwd')._$val();
             var _repwd = $('#repwd')._$val();
             if(_pwd == "" || _repwd == "" || _oldpwd == ""){
-                $("#error-container")._$style("display","block");
+                $("#error")._$style("display","block");
                 $("#errormsg")._$text("密码不能为空");
                 return;
             }else if(_pwd !== _repwd) {
-                $("#error-container")._$style("display","block");
+                $("#error")._$style("display","block");
                 $("#errormsg")._$text("两次密码不一致");
                 return;
             }
@@ -68,23 +68,23 @@ NEJ.define([
 
         });
         //提示词隐藏
-        $(this.__body)._$on("focus",'input',function(){
-          $("#error-container")._$style("display","none");
-          $("#success-container")._$style("display","none");
+        $(this.__body)._$on("click",'input',function(){
+          $("#error")._$style("display","none");
+          $("#success")._$style("display","none");
         });
     };
 
     _pro._editPwdCallback = function(_result){  
         if(_result.code == 200){ 
             //停留3S
-            $("#error-container")._$style("display","none");
-            $("#success-container")._$style("display","block");
+            $("#error")._$style("display","none");
+            $("#success")._$style("display","block");
             $("#successmsg")._$text("修改成功"); 
             window.setTimeout(function(){
                 location.href="./login.html";
             },2000);      
         }else{
-            $("#error-container")._$style("display","block");
+            $("#error")._$style("display","block");
             $("#errormsg")._$text(_result.error);
         }
     }

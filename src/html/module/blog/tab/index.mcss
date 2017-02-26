@@ -1,0 +1,26 @@
+/*顶部菜单*/
+$gray = #E9E9E9;
+$white = #FFFFFF;
+$black = #999999;
+$green = #67C2C6;
+.m-menu-wrap{
+	width:100%;
+	.item{
+		&.left{border-radius: 5px 0px 0px 5px; float:right;}
+		&.center{border-radius: 0px 0px 0px 0px; }
+		&.right{border-radius: 0px 5px 5px 0px; float:left;}
+		padding:4px 0px;
+		text-align: center;
+		margin:7px auto;
+		display:inline;
+		border:1px solid #67C2C6;
+		line-height:24px;
+		font-size:14px;
+		width:100px;
+		background:$white;
+		color:$green;
+	}
+	.active{
+ 		.item{background:$green;color:$white;}
+	}
+}

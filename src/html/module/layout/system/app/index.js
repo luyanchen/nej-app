@@ -13,8 +13,6 @@ NEJ.define([
     'pro/module/module',
     '../../../../../javascript/pro/util.js'
 ],function(_k,_e,_t0,_t1,_m,_u,_p,_o,_f,_r){
-    //验证登录状态
-    _u._$checkLogin();
 
     // variable declaration
     var _pro;

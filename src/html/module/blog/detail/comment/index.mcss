@@ -1,0 +1,52 @@
+$gray = #E9E9E9;
+$white = #FFFFFF;
+$black = #999999;
+$green = #67C2C6;
+$red = #F55252;
+  /*评论*/
+.m-commemt-wrap{
+  .title{
+    padding:0px 12px;
+    background: $white;
+    img{width:20px;vertical-align: middle;}
+    .text{font-size: 16px;color: $black;}
+  }
+  /*评论框*/
+  .send{
+    position:fixed;
+    bottom:0px;
+    z-index:9;
+    font-size:16px;
+    width:100%;
+    padding:12px 10px;
+    background:#F0F0F2;
+    .botton-wrap{
+      width:80px;
+      margin:0px 20px;
+      .button{text-align:center;padding:3px 5px;border-radius: 30px 30px;background:#CCCCCC; color: #ffffff;}
+    }
+    .input{padding:2px 5px;border-radius: 30px 30px;width:100%;background:#ffffff; color: #666666;font-size:16px;}
+  }
+  /*评论列表*/
+  .m-list-wrap{
+    background:$white;
+    padding:0px 12px;
+    .list{  
+      width:100%;
+      .headimg{
+        width:30px;
+        img{
+          width:20px;
+          height:20px;
+          border-radius: 10px 10px;
+        };
+      };
+      .center{
+        padding: 2px 2px;
+        .name{font-size: 14px;color: #333333;margin-bottom:5px;line-height: 16px;}
+        .time{font-size: 13px;color: #999999;margin:5px 0px;}
+        .content{font-size: 14px;color: #333333;margin:5px 0px;}
+      };
+    };
+  }
+}

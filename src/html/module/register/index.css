@@ -1,3 +1,27 @@
-#three-page input{display:none;}
-.admin .righttext{z-index:999;margin-top:-50px;margin-left:72%;font-size: 16px;line-height: 50px;}
-.attention{width: 100%;padding:10px 12px;font-size: 14px;color: #999999; }
+#third-page input{
+	display:none;
+}
+#second-page,#third-page,#error,#success{
+	display:none;
+}
+.u-label{
+	width:100%;
+	padding:10px 12px;
+	font-size:14px;
+	color:#999;
+}
+.u-code{
+	font-size:16px;
+	line-height:40px;
+	width:100px;
+	padding:0px 1px;
+}
+.select-item,.u-code{
+	vertical-align:middle;
+}
+.select-item .active,.u-code .active{
+	color:#67c2c6;
+}
+.select-item .default,.u-code .default{
+	color:#ccc;
+}

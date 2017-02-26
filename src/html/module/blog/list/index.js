@@ -47,10 +47,9 @@ NEJ.define([
             return _options.input.location.href;
         };
         //事件监听必须在dobuild绑定，且应通过this.__body代理，若放在onfresh中会重复绑定。
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
         //class:1推荐，2我的，3搜索
         this._flag = [{},{},{}];//各页面加载flag 暂时用publishTime，应该用自增字段
-        
     };
     /**
      * 刷新模块
@@ -80,9 +79,9 @@ NEJ.define([
     _pro._bindEvent = function(){
         var _self = this;
         $(this.__body)._$on("click",".delblog",function(_event){
-            if(confirm("确定删除？")){
-                var _node = $(this)._$parent('.info-list-wrapper')
-                var _blogid = $(this)._$attr("data-id");
+            var _node = $(this)._$parent('.list')
+            var _blogid = $(this)._$attr("data-id");
+            var _yesCallback = function(){
                 //移除节点，并删除事件
                 _e._$remove(_node[0],false);
                 //删除缓存
@@ -95,8 +94,15 @@ NEJ.define([
                         token:_token
                     }
               });
+              $(".m-popup-wrap")._$style("display","none"); 
+            };
+            var _noCallback = function(){
+              $(".m-popup-wrap")._$style("display","none"); 
             }
-        });
+            $(".m-popup-wrap")._$style("display","block");
+            $(".m-popup-wrap")._$on("click","#yes",_yesCallback._$bind(_self),false);
+            $(".m-popup-wrap")._$on("click","#no",_noCallback._$bind(_self),false); 
+        }, false);
     }
     _pro._listLoadCallback= function(_ropt){
         var _data = this._listcache._$getListInCache(_ropt.key);//从cache列表中取数据
@@ -132,11 +138,17 @@ NEJ.define([
       var touchStart = 0;
       var touchDis = 0;
       var offset = 0;
+      /*设置wrapper最小高度为设备高度*/
+      wrapper._$style("min-height",window.screen.height+"px");
+      console.log(wrapper._$style("min-height"));
       wrapper._$on('touchstart', function(event) {
-          var touch = event.targetTouches[0];
-          touchStart = touch.pageY;
+          if(event.targetTouches){
+            var touch = event.targetTouches[0];         
+            touchStart = touch.pageY;
+          }    
       }, false);
       wrapper._$on('touchmove', function(event) {
+        if(event.targetTouches){
          var touch = event.targetTouches[0];
           offset = _e._$offset('scroller','wrapper').y;
           touchDis = touch.pageY-touchStart;
@@ -144,8 +156,10 @@ NEJ.define([
             scroller._$style('margin-top',offset + touch.pageY-touchStart + 'px');
             $("#pullDown")._$style("display","block");
           }
+        }
       }, false);
-      wrapper._$on('touchend', (function(event) {  
+      wrapper._$on('touchend', (function(event) { 
+        if(event.targetTouches){ 
         offset = _e._$offset('scroller','wrapper').y;
           //下拉
           if(touchStart<_u._$getWindowHeight() && touchDis>20){
@@ -157,6 +171,7 @@ NEJ.define([
                 this._downRefresh();
               })._$bind(this),100);
           }
+        }
 
       })._$bind(this),false);
     }

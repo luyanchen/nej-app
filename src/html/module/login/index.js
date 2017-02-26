@@ -35,7 +35,7 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d0')
         );
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
     };
 
 
@@ -46,19 +46,19 @@ NEJ.define([
           var _phone = $('#phone')._$val();
           var _pwd = $('#pwd')._$val();
           if(!_u._$checkPhone({phone:_phone})){
-              $("#error-container")._$style("display","block");
+              $("#error")._$style("display","block");
               $("#errormsg")._$text("请输入正确的手机号");
               return;
           }
           if(_pwd == ''){
-              $("#error-container")._$style("display","block");
+              $("#error")._$style("display","block");
               $("#errormsg")._$text("请输入密码");
               return;
           }
           _u._$ajaxSend({data:{phone:_phone,pwd:_pwd},url:'login/login',method:'post',callback:_self._loginCallback._$bind(_self)});                         
       }); 
       $(this.__body)._$on('click','input',function(){
-        $("#error-container")._$style("display","none");
+        $("#error")._$style("display","none");
       });
   };
 
@@ -68,7 +68,7 @@ NEJ.define([
             _u._$setJsonDataInStorage(_data); 
             location.href="./app.html";
         }else{
-             $("#error-container")._$style("display","block");
+             $("#error")._$style("display","block");
              $("#errormsg")._$text(_result.error);
         }
   }

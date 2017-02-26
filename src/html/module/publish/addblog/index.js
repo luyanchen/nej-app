@@ -38,29 +38,30 @@ NEJ.define([
         //textarea 封装模板会和<teaxarea>标签冲突。
 
         var tpl = 
-        '<div class="main-container admin ">\
-                <div class="div-20  gray-shallow" ></div>\
-                <div class="div-5 gray-shallow" ></div>\
-                <form id="myform" method="post" class=" gray-shallow">\
-                    <div class="div-10 gray-shallow"></div>\
-                    <input id="title" class="inputline" type="text" name="title" autocomplete="off" placeholder="标题" />\
-                    <div class="div-10 gray-shallow"></div>\
-                    <div class="textarea-container  gray-shallow">\
+        '<div class="m-publish-wrap">\
+                <div class="u-div-30" ></div>\
+                <form id="myform" method="post">\
+                    <div class="u-div-10"></div>\
+                    <input id="title" class="u-input" type="text" name="title" autocomplete="off" placeholder="标题" />\
+                    <div class="u-div-10"></div>\
+                    <div class="u-textarea-wrap">\
                         <textarea id="content" type="text" name="txt" class="textarea" name="content" placeholder="分享新鲜事" /></textarea>\
                     </div>\
-                    <div class="div-10  gray-shallow"></div>\
-                    <div class="div-50  gray-shallow"></div>\
-                    <div class="sighup-big-container  gray-shallow" id="sendbutton">\
-                        <div class="signup default big " >发表</div>\
+                    <div class="u-div-10"></div>\
+                    <div class="u-div-50"></div>\
+                    <div class="u-btn-wrap">\
+                        <div class="u-btn default " id="sendbutton">发表</div>\
                     </div>\
                 </form>\
-                <div class="row sighup-big-container " id="error-container" style="display:none"><div class="signup red big gray-shallow" id="errormsg" ></div></div></div><div class="gray-shallow" ><div class="row sighup-big-container " id="success-container" style="display:none"><div class="signup green big gray-shallow" id="successmsg" ></div></div></div>\
+                <div class="u-div-20"></div>\
+                <div class="u-tips" id="error" ><div class="negative" id="errormsg" ></div></div>\
+                <div class="u-tips" id="success"><div class="active" id="successmsg" ></div></div>\
         </div>';
         var _tpl = _t0._$addTextTemplate('module-id-d6',tpl);
         this.__body = _e._$html2node(
             _t0._$getTextTemplate('module-id-d6')
         );
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
 
     };
 
@@ -77,9 +78,9 @@ NEJ.define([
         });
         $(this.__body)._$on("keyup","#content,#title",function(){
             if($("#content")._$val() != "" && $("#title")._$val() != ""){
-                $("#sendbutton .signup")._$style("background","#67C2C6");      
+                $("#sendbutton")._$style("background","#67C2C6");      
             }else{
-                $("#sendbutton .signup")._$style("background","#cccccc");           
+                $("#sendbutton")._$style("background","#cccccc");           
             }
         });
     };
@@ -88,15 +89,15 @@ NEJ.define([
         //console.log(_result)
         if(_result.code == 200){  
             //停留3S
-            $("#error-container")._$style("display","none");
-            $("#success-container")._$style("display","block");
+            $("#error")._$style("display","none");
+            $("#success")._$style("display","block");
             $("#successmsg")._$text("发布成功"); 
             window.setTimeout(function(){
-                $("#success-container")._$style("display","none");
+                $("#success")._$style("display","none");
                 location.href="#/m/index/detail/?blogid="+_result.data.blogid;
             },1000);      
         }else{
-            $("#error-container")._$style("display","block");
+            $("#error")._$style("display","block");
             $("#errormsg")._$text(_result.error);
         }
     }

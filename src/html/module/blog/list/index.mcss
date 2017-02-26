@@ -1,0 +1,42 @@
+/*图文列表*/
+$gray = #E9E9E9;
+$white = #FFFFFF;
+$black = #999999;
+$green = #67C2C6;
+
+.m-list-wrap{
+  background:$white;
+  padding:0px 12px;
+  .list{  
+    width:100%;
+    min-height: 82px;
+    .headimg{
+      width:50px;
+      img{
+        width:40px;
+        height:40px;
+        border-radius: 20px 20px;
+      };
+    }
+    .center{
+      padding: 5px 5px;
+      .title{font-size: 16px;color: #333333;margin-bottom:5px;line-height: 16px;}
+      .content{font-size: 13px;color: #999999;margin:5px 0px;}
+      .bottom{
+        line-height:16px;
+        margin:5px 0px;
+        .left{font-size: 13px;padding-right: 15px;}
+        .icon{padding-right: 5px;}
+        img{width:10px;height:10px;margin-top: -3px;}
+        .right{font-size: 13px;color: #999999;padding-top: 2px;}
+      }
+    }
+    .botton{
+      width:100px;
+    }
+  };
+}
+
+#wrapper{position:relative;}
+#pullDown{display:none;background: #ffffff;text-align: center;}
+#scroller{position:relative;margin-top:0px;width:100%;}

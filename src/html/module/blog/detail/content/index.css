@@ -1,7 +1,25 @@
-/*博客详情*/
-.article-container{width:100%;padding:0px 12px;background: #ffffff}
-.article-top{padding:15px 0px 10px 0px;}
-.article-top .title{font-size: 16px;color: #333333;}
-.article-top .source-time{margin: 5px 0px;color:#999999;font-size: 12px;}
-.readnum{margin: 10px 0px;color:#999999;font-size: 12px;}
-.article-content img{width:100% !important;height:auto !important;}
+.m-article-wrap{
+	padding:0px 12px;
+	background:#fff;
+}
+.m-article-wrap .top{
+	padding:15px 0px 10px 0px;
+}
+.m-article-wrap .title{
+	font-size:16px;
+	color:#333;
+}
+.m-article-wrap .source-time{
+	margin:5px 0px;
+	color:#999;
+	font-size:12px;
+}
+.m-article-wrap .readnum{
+	margin:10px 0px;
+	color:#999;
+	font-size:12px;
+}
+.m-article-wrap .article-content img{
+	width:100% !important;
+	height:auto !important;
+}

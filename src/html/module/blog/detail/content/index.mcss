@@ -1,0 +1,14 @@
+/*博客详情*/
+$gray = #E9E9E9;
+$white = #FFFFFF;
+$black = #999999;
+$green = #67C2C6;
+.m-article-wrap{
+	padding:0px 12px;
+	background: $white;
+	.top{padding:15px 0px 10px 0px;}
+	.title{font-size: 16px;color: #333333;}
+	.source-time{margin: 5px 0px;color:#999999;font-size: 12px;}
+	.readnum{margin: 10px 0px;color:#999999;font-size: 12px;}
+	.article-content img{width:100% !important;height:auto !important;}
+}

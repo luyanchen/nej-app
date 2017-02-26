@@ -3,41 +3,59 @@
   <div class="mdl-4">
     <div class="j-flag"></div>
   </div>
+  <div class="m-popup-wrap">
+    <div class="cover"></div>
+    <div class="con-wrap">
+      <div class="con">
+        <div>确定删除？</div>
+      </div>
+      <div class="g-flexbox">
+        <div class="u-btn-s-wrap g-flex1">
+            <div class="u-btn default "  id="no">取消</div>
+        </div>
+        <div class="u-btn-s-wrap g-flex1">
+            <div class="u-btn active"  id="yes">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </textarea>
 <textarea name="jst" id="jst-blog-list">
-    <div class="main-container bg-white">
+    <div class="s-bg-white">
+    <div class="u-div-5"></div>
       <div id="wrapper" >
         <div id="pullDown">
             <span id="pullDownLabel">正在更新...</span>
         </div>
         <div id="scroller">
-          <div class="info-list-container" >
+          <div class="m-list-wrap" >
                {list data as x}
-              <div class="info-list-wrapper row">          
-                  <img class="col-sm-2 col-xs-2" src="${x.headimg}" />
-                  <div class="col-sm-8 col-xs-8 center-list" >
-                    <a href="#/m/index/detail/?blogid=${x._id}">
-                    <div class="info-list-title"><span class="titleline">${x.title}</span></div>
-                    <div class="info-list-content"><span class="sourceline">${x.nickname}</span></div>
-                    <div class="info-list-content" data-id=${x.publishTime}>${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
-                    </a>
-                    <div class="info-list-bottom">
-                        <span class="left ">阅读(${x.accessCount})</span>
-                        <span class="left ">评论(${x.commentCount})</span>
+              <div class="list "> 
+                  <div class ="g-flexbox" >
+                    <div class="headimg"><img  src="${x.headimg}" /></div>
+                    <div class="g-flex1 center" >
+                      <a href="#/m/index/detail/?blogid=${x._id}">
+                      <div class="title"><span class="titleline">${x.title}</span></div>
+                      <div class="content"><span class="sourceline">${x.nickname}</span></div>
+                      <div class="content" data-id=${x.publishTime}>${x.publishTime|format:'yyyy-MM-dd HH:mm'}</div>
+                      </a>
+                      <div class="bottom">
+                          <span class="left ">阅读(${x.accessCount})</span>
+                          <span class="left ">评论(${x.commentCount})</span>
+                      </div>
+                    </div>
+                    <div class="botton f-ta-center s-fc-y " >
+                          {if x.canDelete}
+                          <div class="delblog" data-id=${x._id}>删除</div>
+                           {/if}
                     </div>
                   </div>
-                  <div class="col-sm-2 col-xs-2" >
-                        {if x.canDelete}
-                        <div class="left yellow delblog" data-id=${x._id}>删除</div>
-                         {/if}
-                  </div>
-
+                  <hr/>
               </div>
-                              <hr style="margin:10px 0px;"/>
               {/list}
           </div>
         </div>
-        <div class="div-20 gray-shallow"></div>
+        <div class="u-div-40"></div>
     </div>
 </textarea>
 <!-- @TEMPLATE -->

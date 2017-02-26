@@ -42,7 +42,7 @@ NEJ.define([
             _t0._$getTextTemplate('module-id-d8')
         );
         this._list = _e._$getByClassName(this.__body,'j-flag');
-        this._bindEvent._$bind(this)();
+        this._bindEvent();
         this._commentData = [];
     };
 
@@ -72,9 +72,9 @@ NEJ.define([
             }
         });         
         $(this.__body)._$on("click",".delcomment",function(_event){
-            if(confirm("确定删除？")){
                 var _commentId = $(this)._$attr("data-id");
-                var _node = $(this)._$parent('.info-list-wrapper')
+                var _node = $(this)._$parent('.list')
+            var _yesCallback = function(){
                 //移除节点，并删除事件
                 _e._$remove(_node[0],false);
                 //删除节点缓存
@@ -85,13 +85,20 @@ NEJ.define([
                     }
                 });
                 _u._$ajaxSend({data:{blogid:_self._blogid,commentid:_commentId,userid:_userid,token:_token},url:'blog/comment/delete',method:'post',callback:_self._deleteCommentCallback._$bind(_self)});                 
+                $(".m-popup-wrap")._$style("display","none"); 
+            };
+            var _noCallback = function(){
+              $(".m-popup-wrap")._$style("display","none"); 
             }
+            $(".m-popup-wrap")._$style("display","block");
+            $(".m-popup-wrap")._$on("click","#yes",_yesCallback._$bind(_self),false);
+            $(".m-popup-wrap")._$on("click","#no",_noCallback._$bind(_self),false); 
         });
         $(this.__body)._$on("keyup","input[name='content']",function(){
             if($(this)._$val() != ""){
-                $(".comment-button")._$style("background","#67C2C6");      
+                $("#sendbutton")._$style("background","#67C2C6");      
             }else{
-                $(".comment-button")._$style("background","#cccccc");           
+                $("#sendbutton")._$style("background","#cccccc");           
             }
         });
         $("input[name='content']")._$on("keydown",function(_event){

@@ -33,10 +33,9 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t1._$getTextTemplate('module-id-d3')
         );
-        var _list = _e._$get('tb-top-box');
-        
+        var _list = _e._$getByClassName('tb-top-box','tab');
         this.__tbview = _t0._$$TabViewCustom._$allocate({
-            list:_e._$getChildren(_list),
+            list:_list,
             dataset:'id',
             oncheck:this.__doCheckMatchEQ._$bind(this),
             selected:'active',
