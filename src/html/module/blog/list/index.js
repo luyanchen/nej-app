@@ -140,7 +140,6 @@ NEJ.define([
       var offset = 0;
       /*设置wrapper最小高度为设备高度*/
       wrapper._$style("min-height",window.screen.height+"px");
-      console.log(wrapper._$style("min-height"));
       wrapper._$on('touchstart', function(event) {
           if(event.targetTouches){
             var touch = event.targetTouches[0];         

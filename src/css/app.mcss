@@ -141,7 +141,7 @@ $div-hlist = 50,40,30,20,10,5,4,3,2,1;
     }
     .con-wrap{
         z-index: 20001;
-        position:absolute;
+        position:fixed;
         top:50%;
         transform:translate(0,-50%);
         width:100%;

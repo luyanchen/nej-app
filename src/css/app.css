@@ -199,7 +199,7 @@ hr{
 }
 .m-popup-wrap .con-wrap{
 	z-index:20001;
-	position:absolute;
+	position:fixed;
 	top:50%;
 	transform:translate(0,-50%);
 	width:100%;
