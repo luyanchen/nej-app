@@ -26,9 +26,13 @@ app涉及NEJ主要特性包括：
 
  run:
  1. 启动服务器（<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a>）
- 2. 将/nej-app/src/html/app.html和/nej-app/src/html/login.html中的API_PATH改为服务器API路径（如：<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a></li>中的地址为http://localhost:3000/）
+ 
+ 2. 将/nej-app/src/html/app.html和/nej-app/src/html/login.html中的API_PATH改为服务器API路径（如：<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a></li>中的地址为http://localhost:3000/)
+ 
  3.注册地址：/nej-app/src/html/login.html/#/m/register/
+ 
  4.登录地址：/nej-app/src/html/login.html
+ 
  5.首页地址：/nej-app/src/html/app.html
  
  
@@ -113,7 +117,7 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/2.png" width = "30%" />
 
-<img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/14.png" width = "30%" />
+<img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/15.png" width = "30%" />
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/3.png" width = "30%" />
 
