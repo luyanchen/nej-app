@@ -5,14 +5,15 @@
  <li><a href="#show">app展示</a></li>
  </ul>
 #<div id="#descript">概述</div>
-nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-framework">NEJ</a>的mini blog app，通过模块调度系统实现单页面应用。本demo为前端代码，需结合<a href="https://github.com/luyanchen/node-blog/">api</a>使用。
+nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-framework">NEJ</a>的mini blog app，通过模块调度系统实现单页面应用。CSS预处理器采用<a href="https://github.com/leeluolee/mcss">MCSS</a>
+本demo为前端代码，需结合<a href="https://github.com/luyanchen/node-blog/">api</a>使用。
 
 本demo仅用于个人学习(持续更新中)。
  <ul>
  <li>前端：<a href="https://github.com/luyanchen/nej-app/">基于NEJ开发的HTML5移动单页应用</a></li>
  <li>后端：<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a></li>
  </ul>
- 
+框架： 
 app涉及NEJ主要特性包括：
 
     依赖管理系统
@@ -22,9 +23,16 @@ app涉及NEJ主要特性包括：
     远程调用 
     缓存cache
     常用模块:element,event,util,chain,ajax,jst,cache,tab,list等
-   
- 首页地址：/nej-app/src/html/app.html
- 登录地址：/nej-app/src/html/login.html
+
+ run:
+ 1. 启动服务器（<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a>）
+ 2. 将/nej-app/src/html/app.html和/nej-app/src/html/login.html中的API_PATH改为服务器API路径（如：<a href="https://github.com/luyanchen/node-blog/">nodejs+express+mongodb</a></li>中的地址为http://localhost:3000/）
+ 3.注册地址：/nej-app/src/html/login.html/#/m/register/
+ 4.登录地址：/nej-app/src/html/login.html
+ 5.首页地址：/nej-app/src/html/app.html
+ 
+ 
+ 
 #<div id="keyword">核心内容</div> 
  <ul>
  <li><a href="#module">模块组成</a></li>
@@ -70,7 +78,7 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 <h4><div id="tab">重写tab</div></h4>
 底部菜单和首页顶部菜单用tab组件,由于在底部菜单切换时需要修改图片，因此在/pro/tab.js中重写了TabView的_$match方法，新增onchange事件，当切换新菜单时，对应替换图片。
 <h4><div id="bind">事件绑定</div></h4>
-由于模块每次初始化化时触发_dobuild方法，后续每次切换到该模块时触发_onrefresh，因此事件绑定只能放到_dobuild中，并通过_$bind绑定作用域，若放到_onfresh中将出现多次绑定的情况。
+由于模块每次初始化化时触发_dobuild方法，后续每次切换到该模块时触发_onrefresh，因此事件绑定只能放到_dobuild中，若放到_onfresh中将出现多次绑定的情况。
 <pre><code>
     
     /**
@@ -83,7 +91,7 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
             _t0._$getTextTemplate('module-id-d8')
         );
         this._list = _e._$getByClassName(this.__body,'j-flag');
-        this._bindEvent._$bind(this)();//绑定事件
+        this._bindEvent();//绑定事件
         this._commentData = [];
     };
     _pro._bindEvent = function(){
@@ -104,6 +112,8 @@ _$ajaxListSend为配合list.js返回，直接将data传给回调函数。
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/1.png" width = "30%" />
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/2.png" width = "30%" />
+
+<img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/14.png" width = "30%" />
 
 <img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/3.png" width = "30%" />
 
