@@ -40,7 +40,7 @@ NEJ.define([
 
 
     _pro._bindEvent = function(){
-      /*提交登陆*/
+      /*提交登录*/
       var _self = this;
       $(this.__body)._$on("click","#submit",function(){
           var _phone = $('#phone')._$val();
