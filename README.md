@@ -47,9 +47,10 @@ app涉及NEJ主要特性包括：
  <li><a href="#bind">事件绑定</a></li>
  </ul>
 <h4><div id="module">模块组成</div></h4>
-目录
-<img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/14.png" width = "30%" />
-两个入口文件：app.html和login.html,分别对应两个单页面。
+
+目录两个入口文件：app.html和login.html,分别对应两个单页面。
+<div><img src="https://github.com/luyanchen/nej-app/blob/master/res/dispaly/14.png" width = "30%" /></div>
+
 
 每个页面对应一个布局模块+子功能模块，如：博客正文：
 <pre><code>                  
