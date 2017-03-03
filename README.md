@@ -1,11 +1,11 @@
-# nej-regular-app
+# nej-regular-app:<a href="https://github.com/luyanchen/nej-regular-app/">基于NEJ+Regularjs+MCSS开发的HTML5移动单页应用</a>
  <ul>
  <li><a href="#descript">概述</a></li>
  <li><a href="#keyword">核心内容</a></li>
  <li><a href="#show">app展示</a></li>
  </ul>
 #<div id="#descript">概述</div>
-nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-framework">NEJ</a>和<a https://github.com/regularjs/regular>regularjs</a>的mini blog app，通过模块调度系统实现单页面应用。CSS预处理器采用<a href="https://github.com/leeluolee/mcss">MCSS</a>
+nej-app是采用网易前端框架<a href="https://github.com/NEYouFan/nej-framework">NEJ</a>和<a href="https://github.com/regularjs/regular">regularjs</a>的mini blog app，通过模块调度系统实现单页面应用。CSS预处理器采用<a href="https://github.com/leeluolee/mcss">MCSS</a>
 本demo为前端代码，需结合<a href="https://github.com/luyanchen/node-blog/">api</a>使用。
 
 本demo仅用于个人学习(持续更新中)。
